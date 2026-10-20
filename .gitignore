@@ -10,4 +10,4 @@ readmes
 tmp
 /*.md
 !README.md
-
+/personal-projects

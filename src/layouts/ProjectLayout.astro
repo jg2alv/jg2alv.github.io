@@ -43,14 +43,18 @@ const discipline = data.discipline ?? data.disciplineTags
             <dt>Period</dt>
             <dd>{data.period}</dd>
           </div>
-          <div>
-            <dt>Discipline</dt>
-            <dd>{discipline}</dd>
-          </div>
-          <div>
-            <dt>Role</dt>
-            <dd>{data.role}</dd>
-          </div>
+          {discipline && (
+            <div>
+              <dt>Discipline</dt>
+              <dd>{discipline}</dd>
+            </div>
+          )}
+          {data.origin !== 'personal' && (
+            <div class:list={{ 'project-detail__meta-wide': !discipline }}>
+              <dt>Role</dt>
+              <dd>{data.role}</dd>
+            </div>
+          )}
         </dl>
 
         <ProjectTags

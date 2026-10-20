@@ -29,6 +29,9 @@ import VirtualMemoryDiagram from './visuals/VirtualMemoryDiagram.astro';
 import FederatedPrivacyDiagram from './visuals/FederatedPrivacyDiagram.astro';
 import AdversarialSearchDiagram from './visuals/AdversarialSearchDiagram.astro';
 import CartCheckoutDiagram from './visuals/CartCheckoutDiagram.astro';
+import PdfWorkflowDiagram from './visuals/PdfWorkflowDiagram.astro';
+import UrlShortenerDiagram from './visuals/UrlShortenerDiagram.astro';
+import AudioMetadataDiagram from './visuals/AudioMetadataDiagram.astro';
 
 interface Props {
   variant: CollectionEntry<'projects'>['data']['visual'];
@@ -65,6 +68,9 @@ const descriptions: Partial<Record<Props['variant'], string>> = {
   'federated-privacy': 'Clients with different data distributions send model updates to a trusted server for clipping, federated aggregation and Gaussian noise; this schematic does not assert a verified privacy budget.',
   'adversarial-search': 'A schematic Connect Four board and a reduced search tree illustrate Minimax, Alpha–Beta pruning and time-bounded iterative deepening, rather than an observed match result.',
   'cookie-storefront': 'A schematic cookie catalogue leads to a cart with quantities in grams, an order saved in PostgreSQL, and a WhatsApp message draft that the customer reviews and sends.',
+  'pdf-workflow': 'PDF inputs A and B are merged in order; one selected page is excluded from a second document, illustrating local PDF merging and page removal.',
+  'url-shortener': 'A destination URL is assigned a candidate identifier by an Express controller and stored in MongoDB; opening the short link looks up its destination and renders browser navigation.',
+  'audio-metadata': 'A custom readable JSON header precedes an audio payload in one file; the schematic command-line workflow loads, edits and saves metadata, without implying encryption.',
 };
 const description = descriptions[variant];
 ---
@@ -101,6 +107,9 @@ const description = descriptions[variant];
     {variant === 'federated-privacy' && <FederatedPrivacyDiagram />}
     {variant === 'adversarial-search' && <AdversarialSearchDiagram />}
     {variant === 'cookie-storefront' && <CartCheckoutDiagram />}
+    {variant === 'pdf-workflow' && <PdfWorkflowDiagram />}
+    {variant === 'url-shortener' && <UrlShortenerDiagram />}
+    {variant === 'audio-metadata' && <AudioMetadataDiagram />}
     {
       variant === 'scheduler' && (
         <div class="scheduler-graphic">

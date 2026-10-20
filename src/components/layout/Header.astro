@@ -1,0 +1,34 @@
+---
+import { site } from '../../data/site';
+import { withBase } from '../../utils/paths';
+import ThemeToggle from '../common/ThemeToggle.astro';
+
+interface Props {
+  active?: 'home' | 'projects';
+}
+
+const { active } = Astro.props;
+const contact = site.socialLinks.find((link) => link.id === 'contact');
+---
+
+<header class="site-header">
+  <div class="site-header__inner page-shell">
+    <a class="brand-mark" href={withBase('/')} aria-label={`${site.name} — home`}>
+      <span aria-hidden="true">{site.monogram}</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a class:list={['nav-link', { 'nav-link--active': active === 'home' }]} href={withBase('/')} aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+      <a class:list={['nav-link', { 'nav-link--active': active === 'projects' }]} href={withBase('/projects/') } aria-current={active === 'projects' ? 'page' : undefined}>Projects</a>
+      {
+        contact && (
+          <span class="contact-link-wrap">
+            <a class="nav-link nav-link--contact" href={contact.href} target="_blank" aria-describedby="header-contact-tooltip">Contact</a>
+            <span class="contact-tooltip" id="header-contact-tooltip" role="tooltip">Interested in discussing a project? Send me an email.</span>
+          </span>
+        )
+      }
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

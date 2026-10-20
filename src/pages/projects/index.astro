@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+import ProjectSearch from '../../components/projects/ProjectSearch.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.order - a.data.order);
+---
+
+<BaseLayout
+  title="All Projects — Project Portfolio"
+  description="Browse academic and personal computer science projects by name, period, discipline, or technology."
+  active="projects"
+>
+  <main id="main-content" class="projects-page page-shell">
+    <header class="page-intro">
+      <p class="eyebrow">Project archive</p>
+      <h1>All projects.</h1>
+      <p>Search by name or combine tags to find work by period, discipline, origin, language, or technology.</p>
+    </header>
+
+    <ProjectSearch projects={projects} />
+
+    <div class="project-grid" data-project-grid>
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+    <div class="no-results" data-no-results hidden>
+      <span aria-hidden="true">⌁</span>
+      <h2>No projects found.</h2>
+      <p>Try a different name or remove one of the selected tags.</p>
+    </div>
+  </main>
+</BaseLayout>

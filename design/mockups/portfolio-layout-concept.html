@@ -1,0 +1,1679 @@
+<div id="portfolio-layout-mock">
+  <style>
+    #portfolio-layout-mock {
+      --pf-background: #f6f3f5;
+      --pf-surface: #fffbfd;
+      --pf-surface-soft: #e8e4f1;
+      --pf-surface-warm: #edd8ca;
+      --pf-foreground: #2d2430;
+      --pf-muted: #716672;
+      --pf-border: #ddd4db;
+      --pf-accent: #8a3f62;
+      --pf-accent-soft: #edd8ca;
+      --pf-secondary: #3f6552;
+      --pf-secondary-soft: #d7e7de;
+      --pf-course: #66588c;
+      --pf-course-soft: #ddd9ee;
+      --pf-highlight: #c88752;
+      --pf-focus: #557c69;
+      --pf-shadow: rgba(45, 36, 48, 0.10);
+      --pf-overlay: rgba(255, 251, 253, 0.86);
+      --pf-code-line: rgba(45, 36, 48, 0.18);
+      width: 100%;
+      color: var(--pf-foreground);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: transparent;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #portfolio-layout-mock {
+        --pf-background: #19151a;
+        --pf-surface: #241f25;
+        --pf-surface-soft: #2d493e;
+        --pf-surface-warm: #51362d;
+        --pf-foreground: #f5f0f3;
+        --pf-muted: #bdb2b9;
+        --pf-border: #483c44;
+        --pf-accent: #e4a0bd;
+        --pf-accent-soft: #51362d;
+        --pf-secondary: #a9d9c1;
+        --pf-secondary-soft: #2d493e;
+        --pf-course: #c8bee9;
+        --pf-course-soft: #3d3856;
+        --pf-highlight: #e1aa73;
+        --pf-focus: #a9d9c1;
+        --pf-shadow: rgba(0, 0, 0, 0.30);
+        --pf-overlay: rgba(36, 31, 37, 0.86);
+        --pf-code-line: rgba(245, 240, 243, 0.18);
+      }
+    }
+
+    #portfolio-layout-mock[data-theme="light"] {
+      --pf-background: #f6f3f5;
+      --pf-surface: #fffbfd;
+      --pf-surface-soft: #e8e4f1;
+      --pf-surface-warm: #edd8ca;
+      --pf-foreground: #2d2430;
+      --pf-muted: #716672;
+      --pf-border: #ddd4db;
+      --pf-accent: #8a3f62;
+      --pf-accent-soft: #edd8ca;
+      --pf-secondary: #3f6552;
+      --pf-secondary-soft: #d7e7de;
+      --pf-course: #66588c;
+      --pf-course-soft: #ddd9ee;
+      --pf-highlight: #c88752;
+      --pf-focus: #557c69;
+      --pf-shadow: rgba(45, 36, 48, 0.10);
+      --pf-overlay: rgba(255, 251, 253, 0.86);
+      --pf-code-line: rgba(45, 36, 48, 0.18);
+      color-scheme: light;
+    }
+
+    #portfolio-layout-mock[data-theme="dark"] {
+      --pf-background: #19151a;
+      --pf-surface: #241f25;
+      --pf-surface-soft: #2d493e;
+      --pf-surface-warm: #51362d;
+      --pf-foreground: #f5f0f3;
+      --pf-muted: #bdb2b9;
+      --pf-border: #483c44;
+      --pf-accent: #e4a0bd;
+      --pf-accent-soft: #51362d;
+      --pf-secondary: #a9d9c1;
+      --pf-secondary-soft: #2d493e;
+      --pf-course: #c8bee9;
+      --pf-course-soft: #3d3856;
+      --pf-highlight: #e1aa73;
+      --pf-focus: #a9d9c1;
+      --pf-shadow: rgba(0, 0, 0, 0.30);
+      --pf-overlay: rgba(36, 31, 37, 0.86);
+      --pf-code-line: rgba(245, 240, 243, 0.18);
+      color-scheme: dark;
+    }
+
+    #portfolio-layout-mock *,
+    #portfolio-layout-mock *::before,
+    #portfolio-layout-mock *::after {
+      box-sizing: border-box;
+    }
+
+    #portfolio-layout-mock button,
+    #portfolio-layout-mock input {
+      font: inherit;
+    }
+
+    #portfolio-layout-mock button,
+    #portfolio-layout-mock a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #portfolio-layout-mock a {
+      color: inherit;
+    }
+
+    #portfolio-layout-mock button:focus-visible,
+    #portfolio-layout-mock a:focus-visible,
+    #portfolio-layout-mock input:focus-visible {
+      outline: 3px solid var(--pf-focus);
+      outline-offset: 3px;
+    }
+
+    #portfolio-layout-mock .pf-site {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: var(--pf-background);
+      color: var(--pf-foreground);
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    #portfolio-layout-mock .pf-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px clamp(18px, 4vw, 48px);
+      border-bottom: 1px solid var(--pf-border);
+      background: var(--pf-overlay);
+      backdrop-filter: blur(16px);
+    }
+
+    #portfolio-layout-mock .pf-brand,
+    #portfolio-layout-mock .pf-top-link,
+    #portfolio-layout-mock .pf-theme-control,
+    #portfolio-layout-mock .pf-text-action,
+    #portfolio-layout-mock .pf-filter,
+    #portfolio-layout-mock .pf-clear,
+    #portfolio-layout-mock .pf-easter {
+      border: 0;
+      color: var(--pf-foreground);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    #portfolio-layout-mock .pf-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    #portfolio-layout-mock .pf-brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--pf-foreground);
+      color: var(--pf-background);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      letter-spacing: -0.06em;
+    }
+
+    #portfolio-layout-mock .pf-top-actions,
+    #portfolio-layout-mock .pf-page-links,
+    #portfolio-layout-mock .pf-theme-control {
+      display: flex;
+      align-items: center;
+    }
+
+    #portfolio-layout-mock .pf-top-actions {
+      gap: 16px;
+    }
+
+    #portfolio-layout-mock .pf-page-links {
+      gap: 18px;
+    }
+
+    #portfolio-layout-mock .pf-top-link {
+      padding: 9px 0;
+      text-decoration: none;
+      color: var(--pf-muted);
+    }
+
+    #portfolio-layout-mock .pf-top-link:hover,
+    #portfolio-layout-mock .pf-top-link[aria-current="page"] {
+      color: var(--pf-foreground);
+    }
+
+    #portfolio-layout-mock .pf-contact-wrap {
+      position: relative;
+    }
+
+    #portfolio-layout-mock .pf-contact-tooltip {
+      position: absolute;
+      z-index: 10;
+      top: calc(100% + 12px);
+      right: 0;
+      width: min(270px, calc(100vw - 34px));
+      padding: 11px 13px;
+      border: 1px solid var(--pf-border);
+      border-radius: 12px;
+      color: var(--pf-muted);
+      background: var(--pf-surface);
+      box-shadow: 0 12px 30px var(--pf-shadow);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: opacity 150ms ease, transform 150ms ease;
+    }
+
+    #portfolio-layout-mock .pf-contact-wrap:hover .pf-contact-tooltip,
+    #portfolio-layout-mock .pf-contact-wrap:focus-within .pf-contact-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #portfolio-layout-mock .pf-theme-control {
+      min-height: 40px;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--pf-border);
+      border-radius: 999px;
+      background: var(--pf-surface);
+      box-shadow: 0 6px 18px var(--pf-shadow);
+    }
+
+    #portfolio-layout-mock .pf-theme-control svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    #portfolio-layout-mock .pf-view[hidden] {
+      display: none !important;
+    }
+
+    #portfolio-layout-mock .pf-home-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(40px, 8vw, 104px);
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: clamp(54px, 9vw, 112px) clamp(22px, 6vw, 72px) 62px;
+    }
+
+    #portfolio-layout-mock .pf-intro {
+      align-self: start;
+    }
+
+    #portfolio-layout-mock .pf-kicker,
+    #portfolio-layout-mock .pf-section-label,
+    #portfolio-layout-mock .pf-period,
+    #portfolio-layout-mock .pf-breadcrumb,
+    #portfolio-layout-mock .pf-result-count,
+    #portfolio-layout-mock .pf-meta dt {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.76rem;
+      font-weight: 650;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    #portfolio-layout-mock .pf-kicker,
+    #portfolio-layout-mock .pf-section-label,
+    #portfolio-layout-mock .pf-period,
+    #portfolio-layout-mock .pf-meta dt {
+      color: var(--pf-accent);
+    }
+
+    #portfolio-layout-mock .pf-name {
+      max-width: 11ch;
+      margin: 16px 0 10px;
+      font-size: clamp(2.7rem, 7vw, 5.6rem);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+      font-weight: 650;
+    }
+
+    #portfolio-layout-mock .pf-role {
+      margin: 0;
+      color: var(--pf-secondary);
+      font-size: clamp(1.08rem, 2.2vw, 1.38rem);
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    #portfolio-layout-mock .pf-intro-copy {
+      max-width: 34rem;
+      margin: 21px 0 0;
+      color: var(--pf-muted);
+      line-height: 1.72;
+    }
+
+    #portfolio-layout-mock .pf-anchor-nav {
+      display: grid;
+      gap: 12px;
+      margin: 34px 0;
+    }
+
+    #portfolio-layout-mock .pf-anchor-nav a {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+      gap: 12px;
+      color: var(--pf-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    #portfolio-layout-mock .pf-anchor-nav a::before {
+      width: 25px;
+      height: 1px;
+      background: var(--pf-border);
+      content: "";
+      transition: width 160ms ease, background-color 160ms ease;
+    }
+
+    #portfolio-layout-mock .pf-anchor-nav a:hover {
+      color: var(--pf-foreground);
+    }
+
+    #portfolio-layout-mock .pf-anchor-nav a:hover::before {
+      width: 40px;
+      background: var(--pf-accent);
+    }
+
+    #portfolio-layout-mock .pf-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    #portfolio-layout-mock .pf-icon-link-wrap {
+      position: relative;
+      display: inline-flex;
+      flex: 0 0 auto;
+    }
+
+    #portfolio-layout-mock .pf-social-link {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid var(--pf-border);
+      border-radius: 50%;
+      color: var(--pf-muted);
+      background: var(--pf-surface);
+      transition: color 150ms ease, border-color 150ms ease, transform 150ms ease, background-color 150ms ease;
+    }
+
+    #portfolio-layout-mock .pf-social-link:hover,
+    #portfolio-layout-mock .pf-social-link:focus-visible {
+      color: var(--pf-accent);
+      border-color: var(--pf-accent);
+      background: var(--pf-surface-warm);
+      transform: translateY(-2px);
+    }
+
+    #portfolio-layout-mock .pf-social-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    #portfolio-layout-mock .pf-icon-tooltip {
+      position: absolute;
+      z-index: 12;
+      bottom: calc(100% + 9px);
+      left: 50%;
+      width: max-content;
+      max-width: 180px;
+      padding: 7px 9px;
+      border: 1px solid var(--pf-border);
+      border-radius: 9px;
+      color: var(--pf-foreground);
+      background: var(--pf-surface);
+      box-shadow: 0 9px 24px var(--pf-shadow);
+      font-size: 0.72rem;
+      line-height: 1.2;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate(-50%, 5px);
+      transition: opacity 140ms ease, transform 140ms ease;
+      white-space: nowrap;
+    }
+
+    #portfolio-layout-mock .pf-icon-link-wrap:hover .pf-icon-tooltip,
+    #portfolio-layout-mock .pf-icon-link-wrap:focus-within .pf-icon-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+    #portfolio-layout-mock .pf-main-content {
+      min-width: 0;
+    }
+
+    #portfolio-layout-mock .pf-section {
+      padding-bottom: clamp(62px, 10vw, 108px);
+      scroll-margin-top: 22px;
+    }
+
+    #portfolio-layout-mock .pf-about-copy {
+      margin: 18px 0 0;
+      color: var(--pf-muted);
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
+      line-height: 1.72;
+    }
+
+    #portfolio-layout-mock .pf-about-copy strong {
+      color: var(--pf-foreground);
+      font-weight: 650;
+    }
+
+    #portfolio-layout-mock .pf-feature-list {
+      display: grid;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    #portfolio-layout-mock .pf-feature-card {
+      display: grid;
+      grid-template-columns: minmax(128px, 0.72fr) minmax(0, 1.28fr);
+      gap: 22px;
+      padding: 18px;
+      border: 1px solid transparent;
+      border-radius: 22px;
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    #portfolio-layout-mock .pf-feature-card:hover {
+      border-color: var(--pf-border);
+      background: var(--pf-surface);
+      box-shadow: 0 16px 36px var(--pf-shadow);
+      transform: translateY(-3px);
+    }
+
+    #portfolio-layout-mock .pf-project-visual {
+      position: relative;
+      min-height: 145px;
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--pf-surface-soft);
+    }
+
+    #portfolio-layout-mock .pf-project-visual::after {
+      position: absolute;
+      inset: auto -14% -32% auto;
+      width: 76%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--pf-secondary-soft);
+      content: "";
+    }
+
+    #portfolio-layout-mock .pf-orbit {
+      position: absolute;
+      inset: 20px;
+      border: 1px solid var(--pf-secondary);
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    #portfolio-layout-mock .pf-orbit::before,
+    #portfolio-layout-mock .pf-orbit::after {
+      position: absolute;
+      border-radius: 50%;
+      content: "";
+    }
+
+    #portfolio-layout-mock .pf-orbit::before {
+      top: 10%;
+      right: 8%;
+      width: 17px;
+      height: 17px;
+      background: var(--pf-accent);
+    }
+
+    #portfolio-layout-mock .pf-orbit::after {
+      bottom: 4%;
+      left: 16%;
+      width: 10px;
+      height: 10px;
+      background: var(--pf-highlight);
+    }
+
+    #portfolio-layout-mock .pf-code-window {
+      position: absolute;
+      z-index: 1;
+      top: 22px;
+      left: 18px;
+      width: 70%;
+      padding: 14px;
+      border: 1px solid var(--pf-border);
+      border-radius: 12px;
+      background: var(--pf-overlay);
+      box-shadow: 0 10px 22px var(--pf-shadow);
+    }
+
+    #portfolio-layout-mock .pf-window-dots {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    #portfolio-layout-mock .pf-window-dots i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pf-accent);
+    }
+
+    #portfolio-layout-mock .pf-window-dots i:nth-child(2) {
+      background: var(--pf-highlight);
+    }
+
+    #portfolio-layout-mock .pf-window-dots i:nth-child(3) {
+      background: var(--pf-secondary);
+    }
+
+    #portfolio-layout-mock .pf-code-window span {
+      display: block;
+      width: 86%;
+      height: 5px;
+      margin-top: 7px;
+      border-radius: 999px;
+      background: var(--pf-code-line);
+    }
+
+    #portfolio-layout-mock .pf-code-window span:nth-of-type(2) {
+      width: 62%;
+    }
+
+    #portfolio-layout-mock .pf-code-window span:nth-of-type(3) {
+      width: 74%;
+    }
+
+    #portfolio-layout-mock .pf-graph-node {
+      position: absolute;
+      z-index: 1;
+      width: 17px;
+      height: 17px;
+      border: 4px solid var(--pf-surface);
+      border-radius: 50%;
+      background: var(--pf-accent);
+      box-shadow: 0 4px 10px var(--pf-shadow);
+    }
+
+    #portfolio-layout-mock .pf-graph-node:nth-child(1) { top: 22%; left: 18%; }
+    #portfolio-layout-mock .pf-graph-node:nth-child(2) { top: 58%; left: 37%; background: var(--pf-highlight); }
+    #portfolio-layout-mock .pf-graph-node:nth-child(3) { top: 27%; right: 20%; background: var(--pf-secondary); }
+    #portfolio-layout-mock .pf-graph-node:nth-child(4) { bottom: 16%; right: 16%; }
+
+    #portfolio-layout-mock .pf-graph-line {
+      position: absolute;
+      z-index: 0;
+      height: 1px;
+      background: var(--pf-secondary);
+      transform-origin: left;
+      opacity: 0.65;
+    }
+
+    #portfolio-layout-mock .pf-graph-line:nth-of-type(1) { top: 31%; left: 23%; width: 51%; transform: rotate(3deg); }
+    #portfolio-layout-mock .pf-graph-line:nth-of-type(2) { top: 34%; left: 22%; width: 39%; transform: rotate(42deg); }
+    #portfolio-layout-mock .pf-graph-line:nth-of-type(3) { top: 64%; left: 41%; width: 42%; transform: rotate(6deg); }
+
+    #portfolio-layout-mock .pf-feature-copy {
+      align-self: center;
+      min-width: 0;
+    }
+
+    #portfolio-layout-mock .pf-feature-heading,
+    #portfolio-layout-mock .pf-archive-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    #portfolio-layout-mock .pf-feature-heading h3,
+    #portfolio-layout-mock .pf-archive-title h2 {
+      margin: 5px 0 0;
+      font-size: 1.13rem;
+      letter-spacing: -0.025em;
+    }
+
+    #portfolio-layout-mock .pf-card-arrow {
+      color: var(--pf-accent);
+      transition: transform 160ms ease;
+    }
+
+    #portfolio-layout-mock .pf-feature-card:hover .pf-card-arrow,
+    #portfolio-layout-mock .pf-archive-card:hover .pf-card-arrow {
+      transform: translate(3px, -3px);
+    }
+
+    #portfolio-layout-mock .pf-project-summary {
+      margin: 10px 0 14px;
+      color: var(--pf-muted);
+      line-height: 1.6;
+    }
+
+    #portfolio-layout-mock .pf-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 13px;
+    }
+
+    #portfolio-layout-mock .pf-tag {
+      display: inline-flex;
+      align-items: baseline;
+      padding: 0;
+      color: var(--pf-secondary);
+      background: transparent;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.74rem;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+    }
+
+    #portfolio-layout-mock .pf-tag::before {
+      margin-right: 1px;
+      content: "#";
+      opacity: 0.8;
+    }
+
+    #portfolio-layout-mock .pf-tag.pf-tag-origin {
+      color: var(--pf-accent);
+    }
+
+    #portfolio-layout-mock .pf-tag.pf-tag-course {
+      color: var(--pf-course);
+    }
+
+    #portfolio-layout-mock .pf-text-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      margin-top: 25px;
+      padding: 0;
+      color: var(--pf-foreground);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    #portfolio-layout-mock .pf-text-action span {
+      color: var(--pf-accent);
+      transition: transform 160ms ease;
+    }
+
+    #portfolio-layout-mock .pf-text-action:hover span {
+      transform: translateX(4px);
+    }
+
+    #portfolio-layout-mock .pf-global-footer {
+      display: flex;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px clamp(22px, 6vw, 72px) 34px;
+      border-top: 1px solid var(--pf-border);
+    }
+
+    #portfolio-layout-mock .pf-global-footer p {
+      margin: 0;
+      color: var(--pf-muted);
+      font-size: 0.8rem;
+    }
+
+    #portfolio-layout-mock .pf-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 9px 16px;
+    }
+
+    #portfolio-layout-mock .pf-footer-links a {
+      color: var(--pf-muted);
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    #portfolio-layout-mock .pf-footer-links a:hover {
+      color: var(--pf-accent);
+    }
+
+    #portfolio-layout-mock .pf-easter-wrap {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    #portfolio-layout-mock .pf-easter {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 1px solid var(--pf-border);
+      border-radius: 50%;
+      color: var(--pf-accent);
+      background: var(--pf-surface);
+      box-shadow: 0 8px 24px var(--pf-shadow);
+      font-size: 1.25rem;
+    }
+
+    #portfolio-layout-mock .pf-easter-note {
+      position: absolute;
+      right: 0;
+      bottom: 58px;
+      width: max-content;
+      max-width: 180px;
+      padding: 8px 11px;
+      border: 1px solid var(--pf-border);
+      border-radius: 10px;
+      color: var(--pf-muted);
+      background: var(--pf-surface);
+      box-shadow: 0 8px 20px var(--pf-shadow);
+      font-size: 0.75rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(5px);
+      transition: opacity 150ms ease, transform 150ms ease;
+    }
+
+    #portfolio-layout-mock .pf-easter:hover + .pf-easter-note,
+    #portfolio-layout-mock .pf-easter:focus-visible + .pf-easter-note,
+    #portfolio-layout-mock .pf-easter.is-active + .pf-easter-note {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #portfolio-layout-mock .pf-star {
+      position: absolute;
+      right: 17px;
+      bottom: 17px;
+      color: var(--pf-highlight);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #portfolio-layout-mock .pf-easter-wrap.is-bursting .pf-star:nth-of-type(1) { animation: pf-star-one 650ms ease-out; }
+    #portfolio-layout-mock .pf-easter-wrap.is-bursting .pf-star:nth-of-type(2) { animation: pf-star-two 650ms ease-out 50ms; }
+    #portfolio-layout-mock .pf-easter-wrap.is-bursting .pf-star:nth-of-type(3) { animation: pf-star-three 650ms ease-out 100ms; }
+
+    @keyframes pf-star-one {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-30px, -34px) scale(1.2) rotate(28deg); }
+    }
+
+    @keyframes pf-star-two {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translate(24px, -38px) scale(1) rotate(-24deg); }
+    }
+
+    @keyframes pf-star-three {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-39px, 2px) scale(0.9) rotate(38deg); }
+    }
+
+    #portfolio-layout-mock .pf-page-shell {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 92px) clamp(22px, 6vw, 72px) 70px;
+    }
+
+    #portfolio-layout-mock .pf-page-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
+      gap: clamp(28px, 6vw, 72px);
+      align-items: end;
+      margin-bottom: 38px;
+    }
+
+    #portfolio-layout-mock .pf-page-heading h1,
+    #portfolio-layout-mock .pf-project-hero h1 {
+      margin: 10px 0 0;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+    }
+
+    #portfolio-layout-mock .pf-page-heading p,
+    #portfolio-layout-mock .pf-project-hero > p {
+      margin: 0;
+      color: var(--pf-muted);
+      line-height: 1.65;
+    }
+
+    #portfolio-layout-mock .pf-search-area {
+      padding: 21px 0 24px;
+      border-top: 1px solid var(--pf-border);
+      border-bottom: 1px solid var(--pf-border);
+    }
+
+    #portfolio-layout-mock .pf-search-label {
+      display: block;
+      margin-bottom: 9px;
+      font-weight: 700;
+    }
+
+    #portfolio-layout-mock .pf-search-box {
+      position: relative;
+    }
+
+    #portfolio-layout-mock .pf-search-box svg {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      width: 19px;
+      height: 19px;
+      color: var(--pf-muted);
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    #portfolio-layout-mock .pf-search-input {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 15px 12px 46px;
+      border: 1px solid var(--pf-border);
+      border-radius: 14px;
+      color: var(--pf-foreground);
+      background: var(--pf-surface);
+      box-shadow: 0 7px 20px var(--pf-shadow);
+      font-size: 1rem;
+    }
+
+    #portfolio-layout-mock .pf-search-input::placeholder {
+      color: var(--pf-muted);
+      opacity: 0.85;
+    }
+
+    #portfolio-layout-mock .pf-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    #portfolio-layout-mock .pf-filter,
+    #portfolio-layout-mock .pf-clear {
+      min-height: 38px;
+      padding: 7px 11px;
+      border: 1px solid var(--pf-border);
+      border-radius: 999px;
+      background: var(--pf-surface);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.75rem;
+    }
+
+    #portfolio-layout-mock .pf-filter-origin {
+      color: var(--pf-accent);
+      background: var(--pf-accent-soft);
+    }
+
+    #portfolio-layout-mock .pf-filter-course {
+      color: var(--pf-course);
+      background: var(--pf-course-soft);
+    }
+
+    #portfolio-layout-mock .pf-filter-tech {
+      color: var(--pf-secondary);
+      background: var(--pf-secondary-soft);
+    }
+
+    #portfolio-layout-mock .pf-filter[aria-pressed="true"] {
+      border-color: var(--pf-foreground);
+      color: var(--pf-background);
+      background: var(--pf-foreground);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    #portfolio-layout-mock .pf-filter-origin[aria-pressed="true"] {
+      border-color: var(--pf-accent);
+      color: var(--pf-background);
+      background: var(--pf-accent);
+    }
+
+    #portfolio-layout-mock .pf-filter-course[aria-pressed="true"] {
+      border-color: var(--pf-course);
+      color: var(--pf-background);
+      background: var(--pf-course);
+    }
+
+    #portfolio-layout-mock .pf-filter-tech[aria-pressed="true"] {
+      border-color: var(--pf-secondary);
+      color: var(--pf-background);
+      background: var(--pf-secondary);
+    }
+
+    #portfolio-layout-mock .pf-clear {
+      color: var(--pf-accent);
+      border-color: transparent;
+    }
+
+    #portfolio-layout-mock .pf-results-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 27px 0 15px;
+    }
+
+    #portfolio-layout-mock .pf-result-count {
+      color: var(--pf-muted);
+    }
+
+    #portfolio-layout-mock .pf-archive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    #portfolio-layout-mock .pf-archive-card {
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      padding: 21px;
+      border: 1px solid var(--pf-border);
+      border-radius: 17px;
+      color: inherit;
+      background: var(--pf-surface);
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    #portfolio-layout-mock .pf-archive-card[hidden] {
+      display: none !important;
+    }
+
+    #portfolio-layout-mock .pf-archive-card:hover {
+      border-color: var(--pf-accent);
+      box-shadow: 0 12px 28px var(--pf-shadow);
+      transform: translateY(-2px);
+    }
+
+    #portfolio-layout-mock .pf-archive-card .pf-tag-row {
+      margin-top: auto;
+      padding-top: 14px;
+    }
+
+    #portfolio-layout-mock .pf-empty {
+      padding: 34px 0;
+      color: var(--pf-muted);
+      text-align: center;
+    }
+
+    #portfolio-layout-mock .pf-project-hero {
+      max-width: 790px;
+      padding-bottom: 38px;
+    }
+
+    #portfolio-layout-mock .pf-breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--pf-muted);
+    }
+
+    #portfolio-layout-mock .pf-breadcrumb button {
+      padding: 0;
+      border: 0;
+      color: var(--pf-secondary);
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      text-transform: inherit;
+      letter-spacing: inherit;
+    }
+
+    #portfolio-layout-mock .pf-project-hero > p {
+      max-width: 700px;
+      margin-top: 20px;
+      font-size: 1.08rem;
+    }
+
+    #portfolio-layout-mock .pf-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin: 29px 0 0;
+    }
+
+    #portfolio-layout-mock .pf-meta div {
+      padding-top: 11px;
+      border-top: 1px solid var(--pf-border);
+    }
+
+    #portfolio-layout-mock .pf-meta dd {
+      margin: 7px 0 0;
+      color: var(--pf-foreground);
+      line-height: 1.45;
+    }
+
+    #portfolio-layout-mock .pf-detail-visual {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--pf-surface-soft), var(--pf-surface-warm));
+    }
+
+    #portfolio-layout-mock .pf-detail-grid {
+      position: absolute;
+      inset: 12% 9%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    #portfolio-layout-mock .pf-process {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid var(--pf-border);
+      border-radius: 50%;
+      color: var(--pf-foreground);
+      background: var(--pf-overlay);
+      box-shadow: 0 8px 18px var(--pf-shadow);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.76rem;
+    }
+
+    #portfolio-layout-mock .pf-process:nth-child(2) { transform: translateY(44px); }
+    #portfolio-layout-mock .pf-process:nth-child(3) { color: var(--pf-background); background: var(--pf-accent); transform: translateY(-24px); }
+    #portfolio-layout-mock .pf-process:nth-child(4) { transform: translateY(38px); }
+
+    #portfolio-layout-mock .pf-queue {
+      display: grid;
+      gap: 7px;
+    }
+
+    #portfolio-layout-mock .pf-queue i {
+      display: block;
+      height: 15px;
+      border-radius: 999px;
+      background: var(--pf-secondary);
+      opacity: 0.72;
+    }
+
+    #portfolio-layout-mock .pf-detail-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding-top: 48px;
+    }
+
+    #portfolio-layout-mock .pf-prose p {
+      margin: 0;
+      color: var(--pf-muted);
+      line-height: 1.75;
+    }
+
+    #portfolio-layout-mock .pf-prose p + p {
+      margin-top: 22px;
+    }
+
+    #portfolio-layout-mock .pf-repository-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 9px;
+      margin-top: 22px;
+      padding: 10px 15px;
+      border: 1px solid var(--pf-border);
+      border-radius: 12px;
+      color: var(--pf-foreground);
+      background: var(--pf-surface);
+      box-shadow: 0 7px 18px var(--pf-shadow);
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 150ms ease, color 150ms ease, transform 150ms ease;
+    }
+
+    #portfolio-layout-mock .pf-repository-link:hover {
+      border-color: var(--pf-accent);
+      color: var(--pf-accent);
+      transform: translateY(-2px);
+    }
+
+    #portfolio-layout-mock .pf-repository-link svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    #portfolio-layout-mock .pf-back-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 62px;
+      padding-top: 24px;
+      border-top: 1px solid var(--pf-border);
+    }
+
+    #portfolio-layout-mock .pf-back-row .pf-text-action {
+      margin-top: 0;
+    }
+
+    #portfolio-layout-mock .pf-back-row .pf-text-action:hover span {
+      transform: translateX(-4px);
+    }
+
+    @media (min-width: 681px) and (max-width: 860px) {
+      #portfolio-layout-mock .pf-home-layout {
+        grid-template-columns: minmax(190px, 0.62fr) minmax(0, 1.38fr);
+        gap: 34px;
+        padding-right: 34px;
+        padding-left: 34px;
+      }
+
+      #portfolio-layout-mock .pf-feature-card {
+        grid-template-columns: minmax(108px, 0.55fr) minmax(0, 1.45fr);
+        gap: 16px;
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      #portfolio-layout-mock .pf-home-layout {
+        grid-template-columns: 1fr;
+        gap: 66px;
+      }
+
+      #portfolio-layout-mock .pf-name {
+        max-width: none;
+      }
+
+      #portfolio-layout-mock .pf-anchor-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 13px 20px;
+      }
+
+      #portfolio-layout-mock .pf-anchor-nav a::before {
+        display: none;
+      }
+
+      #portfolio-layout-mock .pf-page-heading {
+        grid-template-columns: 1fr;
+      }
+
+      #portfolio-layout-mock .pf-archive-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #portfolio-layout-mock .pf-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      #portfolio-layout-mock .pf-topbar {
+        align-items: flex-start;
+      }
+
+      #portfolio-layout-mock .pf-brand-text,
+      #portfolio-layout-mock .pf-theme-label {
+        display: none;
+      }
+
+      #portfolio-layout-mock .pf-top-actions {
+        gap: 10px;
+      }
+
+      #portfolio-layout-mock .pf-page-links {
+        gap: 12px;
+      }
+
+      #portfolio-layout-mock .pf-theme-control {
+        width: 42px;
+        min-height: 42px;
+        justify-content: center;
+        padding: 0;
+      }
+
+      #portfolio-layout-mock .pf-feature-card {
+        grid-template-columns: 1fr;
+        padding: 14px 0 22px;
+        border-radius: 0;
+        border-bottom-color: var(--pf-border);
+      }
+
+      #portfolio-layout-mock .pf-feature-card:hover {
+        padding-right: 14px;
+        padding-left: 14px;
+        border-color: var(--pf-border);
+        border-radius: 18px;
+      }
+
+      #portfolio-layout-mock .pf-project-visual {
+        min-height: 180px;
+      }
+
+      #portfolio-layout-mock .pf-detail-visual {
+        min-height: 235px;
+        border-radius: 18px;
+      }
+
+      #portfolio-layout-mock .pf-detail-grid {
+        inset: 16% 7%;
+        gap: 6px;
+      }
+
+      #portfolio-layout-mock .pf-process {
+        font-size: 0.64rem;
+      }
+
+      #portfolio-layout-mock .pf-global-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      #portfolio-layout-mock .pf-footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 390px) {
+      #portfolio-layout-mock .pf-page-links > .pf-top-link:first-child {
+        display: none;
+      }
+
+      #portfolio-layout-mock .pf-topbar,
+      #portfolio-layout-mock .pf-home-layout,
+      #portfolio-layout-mock .pf-page-shell {
+        padding-right: 17px;
+        padding-left: 17px;
+      }
+
+      #portfolio-layout-mock .pf-meta {
+        grid-template-columns: 1fr;
+      }
+
+      #portfolio-layout-mock .pf-filter-row {
+        gap: 7px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #portfolio-layout-mock *,
+      #portfolio-layout-mock *::before,
+      #portfolio-layout-mock *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+
+  <div class="pf-site">
+    <header class="pf-topbar">
+      <button type="button" class="pf-brand" data-go="home" aria-label="Go to home">
+        <span class="pf-brand-mark" aria-hidden="true">YN</span>
+        <span class="pf-brand-text">Your Name</span>
+      </button>
+      <div class="pf-top-actions">
+        <nav class="pf-page-links" aria-label="Page preview navigation">
+          <button type="button" class="pf-top-link" data-go="home" aria-current="page">Home</button>
+          <button type="button" class="pf-top-link" data-go="projects">Projects</button>
+          <span class="pf-contact-wrap">
+            <a class="pf-top-link" href="mailto:hello@example.com" target="_blank" rel="noopener noreferrer" data-mock-link aria-describedby="pf-contact-hint">Contact</a>
+            <span class="pf-contact-tooltip" id="pf-contact-hint" role="tooltip">Interested in discussing a project or opportunity? Email is the best way to reach me.</span>
+          </span>
+        </nav>
+        <button type="button" class="pf-theme-control" data-theme-toggle aria-label="Toggle light and dark theme">
+          <svg data-theme-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M20.5 14.7A8.4 8.4 0 0 1 9.3 3.5 8.5 8.5 0 1 0 20.5 14.7Z"></path>
+          </svg>
+          <span class="pf-theme-label" data-theme-label>Theme</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="pf-view" data-view="home">
+      <div class="pf-home-layout">
+        <aside class="pf-intro">
+          <p class="pf-kicker">Portfolio / 2026</p>
+          <h1 class="pf-name">Your Name</h1>
+          <p class="pf-role">Computer Science Student at UFMG</p>
+          <p class="pf-intro-copy">I build thoughtful software and explore the ideas behind it — from university assignments to personal experiments.</p>
+
+          <nav class="pf-anchor-nav" aria-label="Home sections">
+            <a href="#pf-about">About</a>
+            <a href="#pf-featured">Projects</a>
+          </nav>
+
+          <nav class="pf-socials" aria-label="External links">
+            <span class="pf-icon-link-wrap">
+              <a class="pf-social-link" href="#" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="GitHub profile — opens in a new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 22v-3.7c0-1 .1-1.5-.5-2.1 3.2-.4 6.5-1.6 6.5-7.1A5.6 5.6 0 0 0 19.5 5a5.2 5.2 0 0 0-.1-4S18.2.6 15 2.5a13.7 13.7 0 0 0-6 0C5.8.6 4.6 1 4.6 1a5.2 5.2 0 0 0-.1 4A5.6 5.6 0 0 0 3 9.1c0 5.5 3.3 6.7 6.5 7.1-.4.4-.7 1-.7 1.8v4"></path><path d="M8.8 19c-3 .9-3-1.5-4.2-2"></path></svg>
+              </a>
+              <span class="pf-icon-tooltip" aria-hidden="true">GitHub</span>
+            </span>
+            <span class="pf-icon-link-wrap">
+              <a class="pf-social-link" href="#" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="LinkedIn profile — opens in a new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="9" width="4" height="12"></rect><path d="M5 3.4a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM11 21V9h4v2c1-1.5 2.5-2.4 4.1-1.8 1.4.5 1.9 1.8 1.9 4.3V21h-4v-6.6c0-1.6-.5-2.4-1.7-2.4-1.4 0-2.3 1-2.3 3V21h-2Z"></path></svg>
+              </a>
+              <span class="pf-icon-tooltip" aria-hidden="true">LinkedIn</span>
+            </span>
+            <span class="pf-icon-link-wrap">
+              <a class="pf-social-link" href="#" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="Curriculum — opens in a new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"></path><path d="M14 2v5h5M9 12h6M9 16h6"></path></svg>
+              </a>
+              <span class="pf-icon-tooltip" aria-hidden="true">Curriculum</span>
+            </span>
+            <span class="pf-icon-link-wrap">
+              <a class="pf-social-link" href="#" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="Lattes CV — opens in a new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8" cy="10" r="2"></circle><path d="M5.5 16c.5-1.8 1.4-2.7 2.5-2.7s2 .9 2.5 2.7M13 9h5M13 13h5"></path></svg>
+              </a>
+              <span class="pf-icon-tooltip" aria-hidden="true">Lattes CV</span>
+            </span>
+            <span class="pf-icon-link-wrap">
+              <a class="pf-social-link" href="mailto:hello@example.com" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="Contact by email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+              </a>
+              <span class="pf-icon-tooltip" aria-hidden="true">Contact</span>
+            </span>
+          </nav>
+        </aside>
+
+        <main class="pf-main-content">
+          <section class="pf-section" id="pf-about">
+            <p class="pf-section-label">About</p>
+            <p class="pf-about-copy">I’m a Computer Science student at the <strong>Universidade Federal de Minas Gerais</strong>. This space brings together selected academic and personal projects, with concise notes on the problems, decisions, and lessons behind each one.</p>
+          </section>
+
+          <section class="pf-section" id="pf-featured">
+            <p class="pf-section-label">Featured projects</p>
+            <div class="pf-feature-list">
+              <a href="#orion-scheduler" class="pf-feature-card" data-project="orion-scheduler">
+                <div class="pf-project-visual" aria-hidden="true">
+                  <div class="pf-orbit"></div>
+                </div>
+                <div class="pf-feature-copy">
+                  <p class="pf-period">2025-01</p>
+                  <div class="pf-feature-heading"><h3>Orion Scheduler</h3><span class="pf-card-arrow">↗</span></div>
+                  <p class="pf-project-summary">A process scheduling simulator built to compare fairness, latency, and throughput across classic algorithms.</p>
+                  <div class="pf-tag-row">
+                    <span class="pf-tag pf-tag-origin">academic</span>
+                    <span class="pf-tag pf-tag-course">operating-systems</span>
+                    <span class="pf-tag">c</span>
+                  </div>
+                </div>
+              </a>
+
+              <a href="#minas-routes" class="pf-feature-card" data-project="minas-routes">
+                <div class="pf-project-visual" aria-hidden="true">
+                  <span class="pf-graph-node"></span><span class="pf-graph-node"></span><span class="pf-graph-node"></span><span class="pf-graph-node"></span>
+                  <i class="pf-graph-line"></i><i class="pf-graph-line"></i><i class="pf-graph-line"></i>
+                </div>
+                <div class="pf-feature-copy">
+                  <p class="pf-period">2024-02</p>
+                  <div class="pf-feature-heading"><h3>Minas Routes</h3><span class="pf-card-arrow">↗</span></div>
+                  <p class="pf-project-summary">An interactive graph tool for exploring shortest paths and visualizing algorithmic trade-offs.</p>
+                  <div class="pf-tag-row">
+                    <span class="pf-tag pf-tag-origin">academic</span>
+                    <span class="pf-tag pf-tag-course">algorithms-and-data-structures</span>
+                    <span class="pf-tag">cpp</span>
+                  </div>
+                </div>
+              </a>
+
+              <a href="#trace-lens" class="pf-feature-card" data-project="trace-lens">
+                <div class="pf-project-visual" aria-hidden="true">
+                  <div class="pf-code-window"><div class="pf-window-dots"><i></i><i></i><i></i></div><span></span><span></span><span></span></div>
+                </div>
+                <div class="pf-feature-copy">
+                  <p class="pf-period">2025-02</p>
+                  <div class="pf-feature-heading"><h3>TraceLens</h3><span class="pf-card-arrow">↗</span></div>
+                  <p class="pf-project-summary">A personal experiment that turns execution traces into a readable, step-by-step visual narrative.</p>
+                  <div class="pf-tag-row">
+                    <span class="pf-tag pf-tag-origin">personal</span>
+                    <span class="pf-tag">developer-tools</span>
+                    <span class="pf-tag">typescript</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <button type="button" class="pf-text-action" data-go="projects">View all projects <span aria-hidden="true">→</span></button>
+          </section>
+
+        </main>
+      </div>
+    </section>
+
+    <section class="pf-view" data-view="projects" hidden>
+      <main class="pf-page-shell">
+        <header class="pf-page-heading">
+          <div><p class="pf-section-label">Project archive</p><h1>All projects</h1></div>
+          <p>Search by project name, discipline, period, technology, or tag. Every result opens a dedicated case study.</p>
+        </header>
+
+        <section class="pf-search-area" aria-label="Project search and filters">
+          <label class="pf-search-label" for="pf-project-search">Search projects</label>
+          <div class="pf-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg>
+            <input class="pf-search-input" id="pf-project-search" data-search type="search" placeholder="Try “compilers”, “2025-01”, or “python”" autocomplete="off">
+          </div>
+          <div class="pf-filter-row" aria-label="Suggested filters">
+            <button type="button" class="pf-filter pf-filter-origin" data-filter="academic" aria-pressed="false">academic</button>
+            <button type="button" class="pf-filter pf-filter-origin" data-filter="personal" aria-pressed="false">personal</button>
+            <button type="button" class="pf-filter" data-filter="2025-01" aria-pressed="false">2025-01</button>
+            <button type="button" class="pf-filter pf-filter-course" data-filter="operating-systems" aria-pressed="false">operating-systems</button>
+            <button type="button" class="pf-filter pf-filter-course" data-filter="compilers" aria-pressed="false">compilers</button>
+            <button type="button" class="pf-filter pf-filter-tech" data-filter="typescript" aria-pressed="false">typescript</button>
+            <button type="button" class="pf-clear" data-clear>Clear filters</button>
+          </div>
+        </section>
+
+        <div class="pf-results-head"><p class="pf-result-count" data-result-count aria-live="polite">Showing 6 of 6 projects</p></div>
+        <div class="pf-archive-grid" data-project-grid>
+          <a class="pf-archive-card" href="#orion-scheduler" data-project="orion-scheduler" data-searchable="orion scheduler academic 2025-01 operating-systems c process scheduling systems">
+            <p class="pf-period">2025-01</p><div class="pf-archive-title"><h2>Orion Scheduler</h2><span class="pf-card-arrow">↗</span></div><p class="pf-project-summary">A simulator for comparing process scheduling strategies through measurable trade-offs.</p><div class="pf-tag-row"><span class="pf-tag pf-tag-origin">academic</span><span class="pf-tag pf-tag-course">operating-systems</span><span class="pf-tag">c</span></div>
+          </a>
+          <a class="pf-archive-card" href="#trace-lens" data-project="trace-lens" data-searchable="trace lens personal 2025-02 developer-tools typescript visualization">
+            <p class="pf-period">2025-02</p><div class="pf-archive-title"><h2>TraceLens</h2><span class="pf-card-arrow">↗</span></div><p class="pf-project-summary">A readable visual timeline for exploring program execution traces.</p><div class="pf-tag-row"><span class="pf-tag pf-tag-origin">personal</span><span class="pf-tag">developer-tools</span><span class="pf-tag">typescript</span></div>
+          </a>
+          <a class="pf-archive-card" href="#mosaic-compiler" data-project="mosaic-compiler" data-searchable="mosaic compiler academic 2025-01 compilers cpp parsing code-generation">
+            <p class="pf-period">2025-01</p><div class="pf-archive-title"><h2>Mosaic Compiler</h2><span class="pf-card-arrow">↗</span></div><p class="pf-project-summary">A small compiler covering lexical analysis, parsing, type checking, and code generation.</p><div class="pf-tag-row"><span class="pf-tag pf-tag-origin">academic</span><span class="pf-tag pf-tag-course">compilers</span><span class="pf-tag">cpp</span></div>
+          </a>
+          <a class="pf-archive-card" href="#minas-routes" data-project="minas-routes" data-searchable="minas routes academic 2024-02 algorithms algorithms-and-data-structures cpp graphs shortest-path">
+            <p class="pf-period">2024-02</p><div class="pf-archive-title"><h2>Minas Routes</h2><span class="pf-card-arrow">↗</span></div><p class="pf-project-summary">An interactive graph tool for comparing shortest-path algorithms.</p><div class="pf-tag-row"><span class="pf-tag pf-tag-origin">academic</span><span class="pf-tag pf-tag-course">algorithms-and-data-structures</span><span class="pf-tag">cpp</span></div>
+          </a>
+          <a class="pf-archive-card" href="#pixel-lab" data-project="pixel-lab" data-searchable="pixel lab personal 2024-02 computer-graphics javascript canvas">
+            <p class="pf-period">2024-02</p><div class="pf-archive-title"><h2>Pixel Lab</h2><span class="pf-card-arrow">↗</span></div><p class="pf-project-summary">Browser-based experiments with image filters, color spaces, and raster operations.</p><div class="pf-tag-row"><span class="pf-tag pf-tag-origin">personal</span><span class="pf-tag">computer-graphics</span><span class="pf-tag">javascript</span></div>
+          </a>
+          <a class="pf-archive-card" href="#data-garden" data-project="data-garden" data-searchable="data garden academic 2024-01 databases python data-visualization">
+            <p class="pf-period">2024-01</p><div class="pf-archive-title"><h2>Data Garden</h2><span class="pf-card-arrow">↗</span></div><p class="pf-project-summary">A compact data pipeline and dashboard for exploring public urban datasets.</p><div class="pf-tag-row"><span class="pf-tag pf-tag-origin">academic</span><span class="pf-tag pf-tag-course">databases</span><span class="pf-tag">python</span></div>
+          </a>
+        </div>
+        <p class="pf-empty" data-empty hidden>No projects match this search.</p>
+      </main>
+    </section>
+
+    <section class="pf-view" data-view="detail" hidden>
+      <main class="pf-page-shell">
+        <header class="pf-project-hero">
+          <div class="pf-breadcrumb"><button type="button" data-go="home">Home</button><span>/</span><button type="button" data-go="projects">Projects</button><span>/</span><span>Orion Scheduler</span></div>
+          <h1>Orion Scheduler</h1>
+          <p>A process scheduling simulator designed to make operating-system trade-offs visible, measurable, and easier to explain.</p>
+          <dl class="pf-meta">
+            <div><dt>Context</dt><dd>Academic project</dd></div>
+            <div><dt>Period</dt><dd>2025-01</dd></div>
+            <div><dt>Discipline</dt><dd>Operating Systems</dd></div>
+            <div><dt>Role</dt><dd>Core architecture</dd></div>
+          </dl>
+          <div class="pf-tag-row" style="margin-top: 22px;"><span class="pf-tag pf-tag-origin">academic</span><span class="pf-tag pf-tag-course">operating-systems</span><span class="pf-tag">c</span></div>
+          <a class="pf-repository-link" href="#" data-mock-link aria-label="View Orion Scheduler repository on GitHub — opens in a new tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 22v-3.7c0-1 .1-1.5-.5-2.1 3.2-.4 6.5-1.6 6.5-7.1A5.6 5.6 0 0 0 19.5 5a5.2 5.2 0 0 0-.1-4S18.2.6 15 2.5a13.7 13.7 0 0 0-6 0C5.8.6 4.6 1 4.6 1a5.2 5.2 0 0 0-.1 4A5.6 5.6 0 0 0 3 9.1c0 5.5 3.3 6.7 6.5 7.1-.4.4-.7 1-.7 1.8v4"></path><path d="M8.8 19c-3 .9-3-1.5-4.2-2"></path></svg>
+            <span>View repository</span>
+          </a>
+        </header>
+
+        <div class="pf-detail-visual" role="img" aria-label="Placeholder diagram representing processes moving through a scheduling queue">
+          <div class="pf-detail-grid"><span class="pf-process">P1</span><span class="pf-process">P2</span><span class="pf-process">CPU</span><span class="pf-process">P3</span><div class="pf-queue"><i></i><i></i><i></i><i></i></div></div>
+        </div>
+
+        <div class="pf-detail-body">
+          <article class="pf-prose">
+            <p>Scheduling policies are often introduced as formulas and timelines. This project explored how those policies behave as workloads change, and how to compare them without hiding their consequences behind aggregate numbers.</p>
+            <p>The simulator models processes, arrivals, bursts, priorities, and context-switch costs. A shared event engine keeps every algorithm comparable, while isolated strategy modules implement first-come-first-served, shortest-job-first, round-robin, and priority scheduling. Results are presented as timelines and concise metrics, connecting implementation details to observable behavior.</p>
+            <p>I designed the event loop, implemented the scheduling interface, documented the main trade-offs, and created repeatable test workloads for validating fairness and waiting-time calculations.</p>
+            <p>The strongest lesson was that a correct algorithm is only part of the solution. Careful input modeling, deterministic tests, and clear visual explanations were essential for making the comparison trustworthy.</p>
+          </article>
+        </div>
+
+        <div class="pf-back-row"><button type="button" class="pf-text-action" data-go="projects"><span aria-hidden="true">←</span> Back to all projects</button></div>
+      </main>
+    </section>
+
+    <footer class="pf-global-footer">
+      <p>Your Name's Portfolio (© 2026)</p>
+      <nav class="pf-footer-links" aria-label="External profiles and contact">
+        <span class="pf-icon-link-wrap">
+          <a class="pf-social-link" href="#" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="GitHub profile — opens in a new tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 22v-3.7c0-1 .1-1.5-.5-2.1 3.2-.4 6.5-1.6 6.5-7.1A5.6 5.6 0 0 0 19.5 5a5.2 5.2 0 0 0-.1-4S18.2.6 15 2.5a13.7 13.7 0 0 0-6 0C5.8.6 4.6 1 4.6 1a5.2 5.2 0 0 0-.1 4A5.6 5.6 0 0 0 3 9.1c0 5.5 3.3 6.7 6.5 7.1-.4.4-.7 1-.7 1.8v4"></path><path d="M8.8 19c-3 .9-3-1.5-4.2-2"></path></svg>
+          </a>
+          <span class="pf-icon-tooltip" aria-hidden="true">GitHub</span>
+        </span>
+        <span class="pf-icon-link-wrap">
+          <a class="pf-social-link" href="#" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="LinkedIn profile — opens in a new tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="9" width="4" height="12"></rect><path d="M5 3.4a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM11 21V9h4v2c1-1.5 2.5-2.4 4.1-1.8 1.4.5 1.9 1.8 1.9 4.3V21h-4v-6.6c0-1.6-.5-2.4-1.7-2.4-1.4 0-2.3 1-2.3 3V21h-2Z"></path></svg>
+          </a>
+          <span class="pf-icon-tooltip" aria-hidden="true">LinkedIn</span>
+        </span>
+        <span class="pf-icon-link-wrap">
+          <a class="pf-social-link" href="#" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="Curriculum — opens in a new tab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"></path><path d="M14 2v5h5M9 12h6M9 16h6"></path></svg>
+          </a>
+          <span class="pf-icon-tooltip" aria-hidden="true">Curriculum</span>
+        </span>
+        <span class="pf-icon-link-wrap">
+          <a class="pf-social-link" href="mailto:hello@example.com" target="_blank" rel="noopener noreferrer" data-mock-link aria-label="Contact by email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+          </a>
+          <span class="pf-icon-tooltip" aria-hidden="true">Contact</span>
+        </span>
+      </nav>
+      <div class="pf-easter-wrap" data-easter-wrap>
+        <button type="button" class="pf-easter" data-easter aria-label="Future easter egg placeholder">✦</button>
+        <span class="pf-easter-note" aria-live="polite">A future easter egg can live here.</span>
+        <i class="pf-star" aria-hidden="true">✦</i><i class="pf-star" aria-hidden="true">·</i><i class="pf-star" aria-hidden="true">✧</i>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById("portfolio-layout-mock");
+      if (!root) return;
+
+      var views = Array.prototype.slice.call(root.querySelectorAll("[data-view]"));
+      var pageLinks = Array.prototype.slice.call(root.querySelectorAll(".pf-page-links [data-go]"));
+
+      function showView(name) {
+        var targetName = name === "detail" ? "detail" : name;
+        views.forEach(function (view) {
+          view.hidden = view.getAttribute("data-view") !== targetName;
+        });
+        pageLinks.forEach(function (link) {
+          var isCurrent = link.getAttribute("data-go") === targetName || (targetName === "detail" && link.getAttribute("data-go") === "projects");
+          if (isCurrent) link.setAttribute("aria-current", "page");
+          else link.removeAttribute("aria-current");
+        });
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
+      root.querySelectorAll("[data-go]").forEach(function (control) {
+        control.addEventListener("click", function (event) {
+          event.preventDefault();
+          showView(control.getAttribute("data-go"));
+        });
+      });
+
+      root.querySelectorAll("[data-project]").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          showView("detail");
+        });
+      });
+
+      root.querySelectorAll("[data-mock-link]").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+        });
+      });
+
+      var themeButton = root.querySelector("[data-theme-toggle]");
+      var themeLabel = root.querySelector("[data-theme-label]");
+      var themeIcon = root.querySelector("[data-theme-icon]");
+      var themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+      var savedTheme = null;
+      try {
+        var storedTheme = window.localStorage.getItem("portfolio-layout-mock-theme");
+        if (storedTheme === "light" || storedTheme === "dark") savedTheme = storedTheme;
+      } catch (error) {}
+      var hasManualTheme = savedTheme !== null;
+
+      function setTheme(state, persist) {
+        root.setAttribute("data-theme", state);
+        themeLabel.textContent = state.charAt(0).toUpperCase() + state.slice(1);
+        var nextState = state === "light" ? "dark" : "light";
+        themeButton.setAttribute("aria-label", "Theme: " + state + ". Activate to switch to " + nextState + " theme");
+        if (state === "light") {
+          themeIcon.innerHTML = "<circle cx='12' cy='12' r='4'></circle><path d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'></path>";
+        } else {
+          themeIcon.innerHTML = "<path d='M20.5 14.7A8.4 8.4 0 0 1 9.3 3.5 8.5 8.5 0 1 0 20.5 14.7Z'></path>";
+        }
+        if (persist) {
+          try { window.localStorage.setItem("portfolio-layout-mock-theme", state); } catch (error) {}
+        }
+      }
+
+      setTheme(savedTheme || (themeMedia.matches ? "dark" : "light"), false);
+      themeButton.addEventListener("click", function () {
+        hasManualTheme = true;
+        var state = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+        setTheme(state, true);
+      });
+
+      if (themeMedia.addEventListener) {
+        themeMedia.addEventListener("change", function (event) {
+          if (!hasManualTheme) setTheme(event.matches ? "dark" : "light", false);
+        });
+      }
+
+      var searchInput = root.querySelector("[data-search]");
+      var cards = Array.prototype.slice.call(root.querySelectorAll(".pf-archive-card"));
+      var filterButtons = Array.prototype.slice.call(root.querySelectorAll("[data-filter]"));
+      var resultCount = root.querySelector("[data-result-count]");
+      var emptyState = root.querySelector("[data-empty]");
+      var activeFilters = [];
+
+      function normalize(value) {
+        return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+      }
+
+      function updateResults() {
+        var query = normalize(searchInput.value);
+        var queryTerms = query.split(/\s+/).map(function (term) {
+          return term.charAt(0) === "#" ? term.slice(1) : term;
+        }).filter(Boolean);
+        var visible = 0;
+        cards.forEach(function (card) {
+          var haystack = normalize(card.getAttribute("data-searchable") || "");
+          var queryMatch = queryTerms.length === 0 || queryTerms.every(function (term) { return haystack.indexOf(term) !== -1; });
+          var filterMatch = activeFilters.every(function (filter) { return haystack.indexOf(filter) !== -1; });
+          var shouldShow = queryMatch && filterMatch;
+          card.hidden = !shouldShow;
+          if (shouldShow) visible += 1;
+        });
+        resultCount.textContent = "Showing " + visible + " of " + cards.length + (cards.length === 1 ? " project" : " projects");
+        emptyState.hidden = visible !== 0;
+      }
+
+      searchInput.addEventListener("input", updateResults);
+      filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          var filter = button.getAttribute("data-filter");
+          var index = activeFilters.indexOf(filter);
+          if (index === -1) activeFilters.push(filter);
+          else activeFilters.splice(index, 1);
+          button.setAttribute("aria-pressed", index === -1 ? "true" : "false");
+          updateResults();
+        });
+      });
+
+      root.querySelector("[data-clear]").addEventListener("click", function () {
+        activeFilters = [];
+        searchInput.value = "";
+        filterButtons.forEach(function (button) { button.setAttribute("aria-pressed", "false"); });
+        updateResults();
+      });
+
+      var easterButton = root.querySelector("[data-easter]");
+      var easterWrap = root.querySelector("[data-easter-wrap]");
+      easterButton.addEventListener("click", function () {
+        easterButton.classList.add("is-active");
+        easterWrap.classList.remove("is-bursting");
+        void easterWrap.offsetWidth;
+        easterWrap.classList.add("is-bursting");
+        window.setTimeout(function () { easterWrap.classList.remove("is-bursting"); }, 800);
+      });
+    })();
+  </script>
+</div>

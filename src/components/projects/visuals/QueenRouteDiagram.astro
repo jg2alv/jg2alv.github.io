@@ -1,0 +1,69 @@
+---
+const cellSize = 23;
+const pawns = [
+  { column: 3, row: 2 },
+  { column: 5, row: 2 },
+  { column: 5, row: 0 },
+];
+const obstacles = [
+  { column: 1, row: 1 },
+  { column: 2, row: 4 },
+  { column: 4, row: 3 },
+];
+---
+
+<svg class="project-diagram" viewBox="0 0 360 210" aria-hidden="true">
+  <text class="project-diagram__label" x="24" y="25">QUEEN ROUTING</text>
+  <text class="project-diagram__caption" x="336" y="25" text-anchor="end">BFS distances</text>
+
+  <rect x="24" y="42" width="138" height="138" rx="3" fill="var(--surface)" stroke="var(--border)" />
+  {Array.from({ length: 36 }, (_, index) => {
+    const column = index % 6;
+    const row = Math.floor(index / 6);
+    return (
+      <rect
+        x={24 + column * cellSize}
+        y={42 + row * cellSize}
+        width={cellSize}
+        height={cellSize}
+        fill={(column + row) % 2 ? 'var(--discipline-soft)' : 'var(--surface)'}
+        stroke="var(--border)"
+        stroke-width="0.4"
+      />
+    );
+  })}
+
+  {obstacles.map(({ column, row }) => (
+    <g transform={`translate(${24 + column * cellSize}, ${42 + row * cellSize})`}>
+      <rect x="4" y="4" width="15" height="15" rx="2" fill="var(--muted)" fill-opacity="0.25" stroke="var(--muted)" stroke-width="0.7" />
+      <path d="m8 8 7 7m0-7-7 7" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+  ))}
+
+  <path d="M35.5 168.5 104.5 99.5h46v-46" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 3" stroke-linejoin="round" />
+
+  <g transform="translate(35.5, 168.5)" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m-8-5 3 3 1-6 4 5 4-5 1 6 3-3-3 11H-5Z" />
+    <path d="M-6 9H6M-5 5H5" />
+    <circle cy="-10" r="1.5" fill="var(--accent)" stroke="none" />
+  </g>
+
+  {pawns.map(({ column, row }) => (
+    <g transform={`translate(${35.5 + column * cellSize}, ${53.5 + row * cellSize})`} fill="var(--technology-soft)" stroke="var(--technology)" stroke-width="1.1" stroke-linejoin="round">
+      <path d="M-3-1-5 6h10L3-1ZM-6 6v2H6V6Z" />
+      <circle cy="-5" r="3.7" />
+    </g>
+  ))}
+
+  <text class="project-diagram__label" x="190" y="55">SUBSET DP</text>
+  <rect x="190" y="66" width="146" height="35" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" />
+  <text x="263" y="87" text-anchor="middle" font-size="10.5" fill="var(--accent)">001 → 011 → 111</text>
+  <text class="project-diagram__caption" x="263" y="116" text-anchor="middle">visited pawn subsets</text>
+
+  <text class="project-diagram__label" x="190" y="144">GREEDY</text>
+  <rect x="190" y="155" width="146" height="25" rx="4" fill="var(--technology-soft)" stroke="var(--technology)" />
+  <text x="263" y="171" text-anchor="middle" font-size="8.5" fill="var(--technology)">nearest remaining pawn</text>
+
+  <path d="M24 188h312" stroke="var(--border)" />
+  <text class="project-diagram__caption" x="180" y="204" text-anchor="middle">queen moves → capture order</text>
+</svg>

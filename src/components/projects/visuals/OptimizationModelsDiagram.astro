@@ -1,0 +1,28 @@
+---
+const problems = ['packing', 'clique', 'production', 'coloring', 'achromatic'];
+---
+
+<svg class="project-diagram" viewBox="0 0 360 210" aria-hidden="true">
+  <text class="project-diagram__label" x="24" y="25">OPTIMIZATION MODELS</text>
+  <text class="project-diagram__caption" x="336" y="25" text-anchor="end">schematic</text>
+
+  <path d="M168 55v100m0-50h28m-5-4 5 4-5 4" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  {problems.map((problem, index) => (
+    <g>
+      <path d={`M142 ${55 + index * 25}h26`} stroke="var(--muted)" stroke-width="1.2" />
+      <rect x="24" y={44 + index * 25} width="118" height="22" rx="4" fill="var(--discipline-soft)" stroke="var(--discipline)" />
+      <text x="83" y={58.5 + index * 25} text-anchor="middle" font-size="10" fill="var(--foreground)">{problem}</text>
+    </g>
+  ))}
+
+  <rect x="196" y="80" width="140" height="48" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.3" />
+  <text x="266" y="100" text-anchor="middle" font-size="16" fill="var(--foreground)">JuMP</text>
+  <text x="266" y="117" text-anchor="middle" font-size="8.5" fill="var(--accent)">variables · constraints</text>
+
+  <path d="M266 128v17m-4-5 4 5 4-5" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="196" y="145" width="140" height="31" rx="4" fill="var(--technology-soft)" stroke="var(--technology)" />
+  <text x="266" y="165" text-anchor="middle" font-size="12" fill="var(--foreground)">Gurobi solver</text>
+
+  <path d="M24 184h312" stroke="var(--border)" />
+  <text class="project-diagram__caption" x="180" y="201" text-anchor="middle">five formulations → one solver workflow</text>
+</svg>

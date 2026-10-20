@@ -1,0 +1,47 @@
+---
+const size = 26;
+const cells = Array.from({ length: 16 }, (_, index) => ({
+  column: index % 4,
+  row: Math.floor(index / 4),
+}));
+const mountains = new Set(['2,0', '0,2']);
+---
+
+<svg class="project-diagram" viewBox="0 0 360 210" aria-hidden="true">
+  <text class="project-diagram__label" x="24" y="27">DEFENSE MAP</text>
+  <text class="project-diagram__label" x="198" y="27">VERTEX SPLIT</text>
+
+  {cells.map(({ column, row }) => {
+    const x = 24 + column * size;
+    const y = 44 + row * size;
+    const mountain = mountains.has(`${column},${row}`);
+    const capital = column === 1 && row === 1;
+    const example = column === 3 && row === 2;
+
+    return (
+      <g>
+        <rect x={x} y={y} width={size} height={size} fill={capital || example ? 'var(--accent-soft)' : mountain ? 'var(--surface-soft)' : 'var(--surface)'} stroke={example ? 'var(--accent)' : 'var(--border)'} />
+        {mountain && (
+          <path d={`M${x + 5} ${y + 20}l8-13 8 13z`} fill="none" stroke="var(--discipline)" stroke-width="1.5" stroke-linejoin="round" />
+        )}
+        {capital && <text x={x + 13} y={y + 18} text-anchor="middle" font-size="14" font-weight="650" fill="var(--accent)">C</text>}
+        {example && <text x={x + 13} y={y + 18} text-anchor="middle" font-size="12" fill="var(--accent)">3</text>}
+      </g>
+    );
+  })}
+
+  <path d="M128 109h20q8 0 8-8V85q0-8 8-8h22m-4-4 4 4-4 4" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 3" stroke-linecap="round" stroke-linejoin="round" />
+  <text class="project-diagram__caption" x="24" y="164">C = capital</text>
+
+  <circle cx="212" cy="85" r="13" fill="var(--surface-soft)" stroke="var(--discipline)" stroke-width="1.5" />
+  <circle cx="321" cy="85" r="13" fill="var(--technology-soft)" stroke="var(--technology)" stroke-width="1.5" />
+  <path d="M225 85h81m-5-5 5 5-5 5" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+  <text class="project-diagram__caption" x="212" y="111" text-anchor="middle">in</text>
+  <text class="project-diagram__caption" x="321" y="111" text-anchor="middle">out</text>
+  <text class="project-diagram__rank" x="267" y="70" text-anchor="middle">3</text>
+  <text class="project-diagram__caption" x="267" y="139" text-anchor="middle">edge capacity</text>
+  <text class="project-diagram__caption" x="267" y="154" text-anchor="middle">= troop cost</text>
+
+  <path d="M24 177h312" stroke="var(--border)" />
+  <text class="project-diagram__caption" x="180" y="199" text-anchor="middle">maximum flow ↔ minimum cut</text>
+</svg>

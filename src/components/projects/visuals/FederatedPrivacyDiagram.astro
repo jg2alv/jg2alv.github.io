@@ -1,0 +1,42 @@
+---
+const clients = [
+  { label: 'A', y: 56, bars: [16, 7, 4] },
+  { label: 'B', y: 100, bars: [5, 17, 8] },
+  { label: 'C', y: 144, bars: [6, 9, 17] },
+];
+---
+
+<svg class="project-diagram" viewBox="0 0 360 210" aria-hidden="true">
+  <text class="project-diagram__label" x="24" y="25">FEDERATED UPDATES</text>
+  <text class="project-diagram__caption" x="336" y="25" text-anchor="end">schematic</text>
+
+  <text class="project-diagram__caption" x="64" y="47" text-anchor="middle">clients</text>
+  {clients.map((client) => (
+    <g>
+      <rect x="24" y={client.y} width="80" height="31" rx="4" fill="var(--discipline-soft)" stroke="var(--discipline)" stroke-width="1.1" />
+      <text x="38" y={client.y + 20} text-anchor="middle" font-size="11" fill="var(--discipline)">{client.label}</text>
+      {client.bars.map((height, index) => (
+        <rect x={58 + index * 12} y={client.y + 24 - height} width="7" height={height} rx="1" fill="var(--discipline)" />
+      ))}
+    </g>
+  ))}
+
+  <path d="M105 71.5h20v88h-20M105 115.5h50m-4-3 4 3-4 3" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="126" y="96" text-anchor="middle" font-size="8.5" fill="var(--muted)">updates</text>
+
+  <rect x="148" y="43" width="188" height="132" rx="5" fill="none" stroke="var(--control-border)" stroke-width="1.2" stroke-dasharray="4 3" />
+  <text class="project-diagram__caption" x="242" y="62" text-anchor="middle">trusted server</text>
+  <rect x="159" y="78" width="71" height="48" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.2" />
+  <text x="194.5" y="98" text-anchor="middle" font-size="11" fill="var(--accent)">update</text>
+  <text x="194.5" y="114" text-anchor="middle" font-size="11" fill="var(--accent)">clipping</text>
+  <path d="M231 102h16m-4-3 4 3-4 3" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="252" y="78" width="70" height="48" rx="4" fill="var(--surface)" stroke="var(--control-border)" stroke-width="1.2" />
+  <text x="287" y="106" text-anchor="middle" font-size="11" fill="var(--foreground)">FedAvg</text>
+  <path d="M287 127v10m-3-4 3 4 3-4" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="159" y="141" width="163" height="24" rx="4" fill="var(--technology-soft)" stroke="var(--technology)" stroke-width="1.1" />
+  <text x="240.5" y="157" text-anchor="middle" font-size="11" fill="var(--technology)">Gaussian noise</text>
+
+  <path d="M241 166v16m-3-4 3 4 3-4" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="241" y="198" text-anchor="middle" font-size="11" fill="var(--foreground)">global model</text>
+  <text class="project-diagram__caption" x="24" y="198">uneven data</text>
+</svg>

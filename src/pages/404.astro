@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/paths';
+---
+
+<BaseLayout title="Page not found — Project Portfolio">
+  <main id="main-content" class="not-found page-shell">
+    <p class="eyebrow">Error 404</p>
+    <h1>This page wandered off the graph.</h1>
+    <p>The address may have changed, or the project may not exist yet.</p>
+    <a class="primary-button" href={withBase('/')}>Return home <span aria-hidden="true">→</span></a>
+  </main>
+</BaseLayout>

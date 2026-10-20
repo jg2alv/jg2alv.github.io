@@ -1,0 +1,18 @@
+<span class="theme-toggle-wrap">
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" aria-describedby="theme-toggle-tooltip">
+    <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 15.2A8.2 8.2 0 0 1 8.8 4 8.2 8.2 0 1 0 20 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+    </svg>
+    <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+    </svg>
+  </button>
+  <span class="icon-tooltip theme-toggle__tooltip" id="theme-toggle-tooltip" data-theme-tooltip role="tooltip">Dark theme</span>
+</span>
+
+<script>
+  import { initThemeToggle } from '../../scripts/theme';
+
+  initThemeToggle();
+</script>

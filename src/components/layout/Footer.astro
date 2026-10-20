@@ -1,0 +1,27 @@
+---
+import { site } from '../../data/site';
+import IconLink from '../common/IconLink.astro';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner page-shell">
+    <p>{site.name}'s Portfolio <span aria-label={`Copyright ${site.copyrightYear}`}>(© {site.copyrightYear})</span></p>
+    <nav class="social-links" aria-label="External profiles and contact">
+      {
+        site.socialLinks.map((link) => (
+          <IconLink href={link.href} label={link.label} icon={link.icon} tooltipId={`footer-${link.id}-tooltip`} newTab={link.external} />
+        ))
+      }
+    </nav>
+  </div>
+  <button class="easter-egg" type="button" data-easter-egg aria-label="Future Easter egg">
+    <span aria-hidden="true">✦</span>
+  </button>
+  <div class="easter-toast" data-easter-toast role="status" aria-live="polite" aria-atomic="true"></div>
+</footer>
+
+<script>
+  import { initEasterEgg } from '../../scripts/easter-egg';
+
+  initEasterEgg();
+</script>

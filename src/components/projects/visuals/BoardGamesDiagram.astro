@@ -1,0 +1,43 @@
+---
+const reversiDiscs = [
+  { column: 3, row: 3, fill: 'var(--foreground)' },
+  { column: 4, row: 4, fill: 'var(--foreground)' },
+  { column: 4, row: 3, fill: 'var(--surface)' },
+  { column: 3, row: 4, fill: 'var(--surface)' },
+];
+const connectFourDiscs = new Map([
+  ['5-0', 'var(--accent)'],
+  ['5-1', 'var(--discipline)'],
+  ['5-2', 'var(--accent)'],
+  ['5-3', 'var(--discipline)'],
+  ['4-1', 'var(--accent)'],
+  ['4-2', 'var(--discipline)'],
+  ['3-2', 'var(--accent)'],
+]);
+---
+
+<svg class="project-diagram" viewBox="0 0 360 210" aria-hidden="true">
+  <text class="project-diagram__label" x="92" y="29" text-anchor="middle">REVERSI</text>
+  <text class="project-diagram__label" x="263" y="29" text-anchor="middle">CONNECT FOUR</text>
+
+  <rect x="24" y="45" width="136" height="136" rx="4" fill="var(--technology-soft)" stroke="var(--technology)" />
+  <g stroke="var(--technology)" stroke-width="0.7" opacity="0.6">
+    {Array.from({ length: 7 }, (_, index) => (
+      <>
+        <path d={`M${41 + index * 17} 45v136`} />
+        <path d={`M24 ${62 + index * 17}h136`} />
+      </>
+    ))}
+  </g>
+  {reversiDiscs.map(({ column, row, fill }) => (
+    <circle cx={32.5 + column * 17} cy={53.5 + row * 17} r="6.3" fill={fill} stroke="var(--foreground)" stroke-width="0.8" />
+  ))}
+
+  <rect x="192" y="57" width="142" height="112" rx="6" fill="var(--surface-soft)" stroke="var(--discipline)" />
+  {Array.from({ length: 42 }, (_, index) => {
+    const row = Math.floor(index / 7);
+    const column = index % 7;
+    return <circle cx={206 + column * 19} cy={69.5 + row * 17.5} r="6.2" fill={connectFourDiscs.get(`${row}-${column}`) ?? 'var(--surface)'} stroke="var(--border)" stroke-width="0.65" />;
+  })}
+  <text class="project-diagram__caption" x="263" y="193" text-anchor="middle">shared game interface</text>
+</svg>

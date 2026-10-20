@@ -1,0 +1,72 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+const unique = (values: string[]) => [...new Set(values)].sort((a, b) => b.localeCompare(a));
+const origins = unique(projects.map(({ data }) => data.origin));
+const periods = unique(projects.map(({ data }) => data.period));
+const disciplines = unique(projects.flatMap(({ data }) => data.disciplineTags));
+const technologies = unique(projects.flatMap(({ data }) => data.technologyTags));
+const groups = [
+  { id: 'origin', label: 'Origin', values: origins, className: 'filter-chip--origin' },
+  { id: 'period', label: 'Period', values: periods, className: 'filter-chip--period' },
+  { id: 'discipline', label: 'Discipline', values: disciplines, className: 'filter-chip--discipline' },
+  { id: 'technology', label: 'Technology', values: technologies, className: 'filter-chip--technology' },
+];
+---
+
+<section class="project-search" aria-label="Search and filter projects" data-project-search>
+  <label class="search-field">
+    <span class="sr-only">Search projects</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="10.7" cy="10.7" r="6.7" fill="none" stroke="currentColor" stroke-width="1.8" />
+      <path d="m16 16 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+    </svg>
+    <input type="search" placeholder="Search by project name or #tag" autocomplete="off" data-project-query />
+    <kbd>/</kbd>
+  </label>
+
+  <details class="filter-panel">
+    <summary>
+      Filter by tags
+      <span class="filter-count" data-filter-count hidden>0</span>
+      <span class="filter-panel__chevron" aria-hidden="true">⌄</span>
+    </summary>
+    <div class="filter-panel__content">
+      {
+        groups.map((group) => (
+          <fieldset class="filter-group" data-filter-group={group.id}>
+            <legend>{group.label}</legend>
+            <div class="filter-group__options">
+              {group.values.map((value) => (
+                <button
+                  class:list={['filter-chip', group.className]}
+                  type="button"
+                  data-filter-value={value}
+                  aria-pressed="false"
+                >
+                  #{value}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+        ))
+      }
+      <button class="clear-filters" type="button" data-clear-filters disabled>Clear filters</button>
+    </div>
+  </details>
+
+  <p class="search-status" aria-live="polite" data-search-status>
+    Showing all {projects.length} projects.
+  </p>
+</section>
+
+<script>
+  import { initProjectSearch } from '../../scripts/project-search';
+
+  initProjectSearch();
+</script>

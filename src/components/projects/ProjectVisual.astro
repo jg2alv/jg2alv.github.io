@@ -1,0 +1,163 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SolarSortingDiagram from './visuals/SolarSortingDiagram.astro';
+import BinaryRelationDiagram from './visuals/BinaryRelationDiagram.astro';
+import BoardGamesDiagram from './visuals/BoardGamesDiagram.astro';
+import IndirectSortingDiagram from './visuals/IndirectSortingDiagram.astro';
+import HospitalEventDiagram from './visuals/HospitalEventDiagram.astro';
+import FlightSearchDiagram from './visuals/FlightSearchDiagram.astro';
+import ModuloFiveDiagram from './visuals/ModuloFiveDiagram.astro';
+import RiscAssemblyDiagram from './visuals/RiscAssemblyDiagram.astro';
+import RiscDatapathDiagram from './visuals/RiscDatapathDiagram.astro';
+import CacheSimulatorDiagram from './visuals/CacheSimulatorDiagram.astro';
+import HousingAnalysisDiagram from './visuals/HousingAnalysisDiagram.astro';
+import ShelterNetworkDiagram from './visuals/ShelterNetworkDiagram.astro';
+import DefenseCutDiagram from './visuals/DefenseCutDiagram.astro';
+import QueenRouteDiagram from './visuals/QueenRouteDiagram.astro';
+import TrieSearchDiagram from './visuals/TrieSearchDiagram.astro';
+import ClusteringDiagram from './visuals/ClusteringDiagram.astro';
+import OptimizationModelsDiagram from './visuals/OptimizationModelsDiagram.astro';
+import SimplexDiagram from './visuals/SimplexDiagram.astro';
+import StarfleetProtocolDiagram from './visuals/StarfleetProtocolDiagram.astro';
+import DeforestationPatrolDiagram from './visuals/DeforestationPatrolDiagram.astro';
+import BasketMiningDiagram from './visuals/BasketMiningDiagram.astro';
+import MusicClusteringDiagram from './visuals/MusicClusteringDiagram.astro';
+import HitClassificationDiagram from './visuals/HitClassificationDiagram.astro';
+import GameSalesDiagram from './visuals/GameSalesDiagram.astro';
+import ShellRedirectionDiagram from './visuals/ShellRedirectionDiagram.astro';
+import VirtualMemoryDiagram from './visuals/VirtualMemoryDiagram.astro';
+import FederatedPrivacyDiagram from './visuals/FederatedPrivacyDiagram.astro';
+import AdversarialSearchDiagram from './visuals/AdversarialSearchDiagram.astro';
+import CartCheckoutDiagram from './visuals/CartCheckoutDiagram.astro';
+
+interface Props {
+  variant: CollectionEntry<'projects'>['data']['visual'];
+}
+
+const { variant } = Astro.props;
+const descriptions: Partial<Record<Props['variant'], string>> = {
+  'solar-sorting': 'Three solar systems ranked by decreasing star radius, illustrating the multi-criteria sorting project.',
+  'binary-relations': 'A directed relation with pairs (a, b) and (b, c); the dashed added pair (a, c) illustrates transitive closure.',
+  'board-games': 'An eight-by-eight Reversi board and a seven-column Connect Four board, representing games managed through a shared interface.',
+  'indirect-sorting': 'Three independent name, CPF, and address index views reference one unchanged record table, illustrating indirect sorting.',
+  'hospital-events': 'Three urgency queues feed limited service units; a min-heap orders future events and advances the simulation from arrival to discharge.',
+  'flight-search': 'A flight query uses AVL attribute indexes, combines origin and destination conditions, and produces ranked flight records.',
+  'modulo-five': 'A four-bit sensor value of 1101, decimal 13, passes through a modulo-five circuit to produce the three-bit remainder 011, decimal 3.',
+  'risc-assembly': 'A strictly increasing array returns true; nested inventory, adjustment, and multiplier procedures use a return-address stack and produce a total of 78.',
+  'risc-datapath': 'An ADD instruction is decoded into an ALU control signal; register operands 7 and 5 enter the execution logic and produce the result 12.',
+  'cache-simulator': 'Blocks A, B, and A access a two-line fully associative cache, producing MISS, MISS, and HIT while preserving the FIFO insertion order A then B.',
+  'housing-analysis': 'A schematic housing-analysis graphic with income and property-value axes, illustrative points, and a house representing income, ocean proximity, age, and location. The points are not observed data.',
+  'shelter-network': 'Overlapping circular shelters form a graph, with a breadth-first route from A to B and one articulation point highlighted.',
+  'defense-cut': 'A kingdom map with mountains and a capital, alongside a split-cell flow edge whose capacity represents troop cost.',
+  'queen-route': 'A schematic six-by-six chessboard shows a queen following legal diagonal and straight moves toward three pawns while avoiding obstacles; adjacent panels contrast visited-target bitmasks with a nearest-pawn greedy strategy.',
+  'trie-search': 'A schematic compressed trie connects shared term prefixes to document postings, while a Boolean query combines matching documents for retrieval.',
+  'clustering': 'Illustrative point clusters surround selected centers and coverage radii, representing k-center clustering rather than measured experimental results.',
+  'optimization-models': 'Five optimization models for packing, cliques, production, coloring, and achromatic coloring feed a shared JuMP and Gurobi modeling workflow.',
+  'simplex': 'A schematic feasible region and an edge-following pivot path illustrate simplex optimization; optimal, infeasible, and unbounded are shown as possible solver statuses.',
+  'starfleet-protocol': 'A human player client exchanges action requests and combat results with an enemy computer server over TCP, updating the battle session state.',
+  'deforestation-patrol': 'A simulated alert on a weighted graph is routed to an available drone team rather than a busy one, alongside UDP messaging and four client threads.',
+  'basket-mining': 'An illustrative binary basket representation leads to frequent-pattern mining and an association rule, showing co-occurrence rather than causation.',
+  'music-clustering': 'A schematic music-clustering workflow connects scaling, PCA and MiniBatchKMeans to illustrative groups and an interpretable feature profile; the graphic is not measured data.',
+  'hit-classification': 'Acoustic features feed a Hit or Niche classifier with popularity-defined labels; recall and F1 emphasize evaluation beyond accuracy, without predicting future success.',
+  'game-sales': 'A schematic game-sales graphic compares regional market profiles and K-Means versus DBSCAN, illustrating descriptive segmentation rather than forecasts or measured returns.',
+  'shell-redirection': 'A shell command reads from an input file through standard input and writes to an output file through standard output; open, dup2, and close illustrate file-descriptor redirection.',
+  'virtual-memory': 'An illustrative virtual-memory trace connects limited RAM frames with page faults and dirty-page write-backs, alongside replacement policies and page-table designs; no measured performance is shown.',
+  'federated-privacy': 'Clients with different data distributions send model updates to a trusted server for clipping, federated aggregation and Gaussian noise; this schematic does not assert a verified privacy budget.',
+  'adversarial-search': 'A schematic Connect Four board and a reduced search tree illustrate Minimax, Alpha–Beta pruning and time-bounded iterative deepening, rather than an observed match result.',
+  'cookie-storefront': 'A schematic cookie catalogue leads to a cart with quantities in grams, an order saved in PostgreSQL, and a WhatsApp message draft that the customer reviews and sends.',
+};
+const description = descriptions[variant];
+---
+
+<div class:list={['project-visual', `project-visual--${variant}`]} role={description ? 'img' : undefined} aria-label={description} aria-hidden={description ? undefined : 'true'}>
+  <div class="project-visual__window" aria-hidden="true">
+    <div class="project-visual__bar"><i></i><i></i><i></i></div>
+    {variant === 'solar-sorting' && <SolarSortingDiagram />}
+    {variant === 'binary-relations' && <BinaryRelationDiagram />}
+    {variant === 'board-games' && <BoardGamesDiagram />}
+    {variant === 'indirect-sorting' && <IndirectSortingDiagram />}
+    {variant === 'hospital-events' && <HospitalEventDiagram />}
+    {variant === 'flight-search' && <FlightSearchDiagram />}
+    {variant === 'modulo-five' && <ModuloFiveDiagram />}
+    {variant === 'risc-assembly' && <RiscAssemblyDiagram />}
+    {variant === 'risc-datapath' && <RiscDatapathDiagram />}
+    {variant === 'cache-simulator' && <CacheSimulatorDiagram />}
+    {variant === 'housing-analysis' && <HousingAnalysisDiagram />}
+    {variant === 'shelter-network' && <ShelterNetworkDiagram />}
+    {variant === 'defense-cut' && <DefenseCutDiagram />}
+    {variant === 'queen-route' && <QueenRouteDiagram />}
+    {variant === 'trie-search' && <TrieSearchDiagram />}
+    {variant === 'clustering' && <ClusteringDiagram />}
+    {variant === 'optimization-models' && <OptimizationModelsDiagram />}
+    {variant === 'simplex' && <SimplexDiagram />}
+    {variant === 'starfleet-protocol' && <StarfleetProtocolDiagram />}
+    {variant === 'deforestation-patrol' && <DeforestationPatrolDiagram />}
+    {variant === 'basket-mining' && <BasketMiningDiagram />}
+    {variant === 'music-clustering' && <MusicClusteringDiagram />}
+    {variant === 'hit-classification' && <HitClassificationDiagram />}
+    {variant === 'game-sales' && <GameSalesDiagram />}
+    {variant === 'shell-redirection' && <ShellRedirectionDiagram />}
+    {variant === 'virtual-memory' && <VirtualMemoryDiagram />}
+    {variant === 'federated-privacy' && <FederatedPrivacyDiagram />}
+    {variant === 'adversarial-search' && <AdversarialSearchDiagram />}
+    {variant === 'cookie-storefront' && <CartCheckoutDiagram />}
+    {
+      variant === 'scheduler' && (
+        <div class="scheduler-graphic">
+          <span class="scheduler-graphic__label">queue</span>
+          <div><i /><i /><i /><i /></div>
+          <div><i /><i /><i /></div>
+          <div><i /><i /></div>
+        </div>
+      )
+    }
+    {
+      variant === 'routes' && (
+        <svg class="routes-graphic" viewBox="0 0 360 210">
+          <path d="M-10 60c60-38 90 56 150 19s93-28 145 10 67-9 91-26" />
+          <path d="M25 180c51-54 72-32 116-60s78-3 117-35 75-28 112-18" />
+          <path class="routes-graphic__route" d="M42 165c54-8 44-68 102-69s68 58 111 30 43-64 73-76" />
+          <circle cx="42" cy="165" r="6" /><circle cx="328" cy="50" r="6" />
+        </svg>
+      )
+    }
+    {
+      variant === 'traces' && (
+        <div class="traces-graphic">
+          <div class="traces-graphic__axis" />
+          <svg viewBox="0 0 360 170"><path d="M0 132 42 118 78 126 111 65 149 91 188 42 229 79 274 34 320 59 360 21" /></svg>
+          <span /><span /><span /><span />
+        </div>
+      )
+    }
+    {
+      variant === 'compiler' && (
+        <div class="compiler-graphic">
+          <code><b>fn</b> compile(source) {'{'}</code>
+          <code>&nbsp;&nbsp;tokens = scan(source)</code>
+          <code>&nbsp;&nbsp;tree = parse(tokens)</code>
+          <code>&nbsp;&nbsp;<b>return</b> emit(tree)</code>
+          <code>{'}'}</code>
+        </div>
+      )
+    }
+    {
+      variant === 'pixels' && (
+        <div class="pixels-graphic">
+          {Array.from({ length: 42 }).map((_, index) => <i style={`--pixel: ${index}`} />)}
+        </div>
+      )
+    }
+    {
+      variant === 'data' && (
+        <div class="data-graphic">
+          <div class="data-graphic__database"><i /><i /><i /></div>
+          <span class="data-graphic__line data-graphic__line--one" />
+          <span class="data-graphic__line data-graphic__line--two" />
+          <div class="data-graphic__node data-graphic__node--one" />
+          <div class="data-graphic__node data-graphic__node--two" />
+        </div>
+      )
+    }
+  </div>
+</div>

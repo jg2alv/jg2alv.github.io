@@ -1,0 +1,24 @@
+---
+interface Props {
+  origin: 'academic' | 'personal';
+  period: string;
+  disciplineTags?: string[];
+  technologyTags?: string[];
+  compact?: boolean;
+}
+
+const {
+  origin,
+  period,
+  disciplineTags = [],
+  technologyTags = [],
+  compact = false,
+} = Astro.props;
+---
+
+<div class:list={['project-tags', { 'project-tags--compact': compact }]} aria-label="Project tags">
+  <span class="project-tag project-tag--origin">#{origin}</span>
+  <span class="project-tag project-tag--period">#{period}</span>
+  {disciplineTags.map((tag) => <span class="project-tag project-tag--discipline">#{tag}</span>)}
+  {technologyTags.map((tag) => <span class="project-tag project-tag--technology">#{tag}</span>)}
+</div>

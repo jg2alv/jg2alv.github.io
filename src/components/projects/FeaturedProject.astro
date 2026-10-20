@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../../utils/paths';
+import ProjectTags from '../common/ProjectTags.astro';
+import ProjectVisual from './ProjectVisual.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<a class="featured-project" href={withBase(`/projects/${project.id}/`)} aria-label={`Read about ${data.title}`}>
+  <div class="featured-project__visual">
+    <ProjectVisual variant={data.visual} />
+  </div>
+  <div class="featured-project__content">
+    <p class="eyebrow">{data.period}</p>
+    <div class="featured-project__heading">
+      <h3>{data.title}</h3>
+      <span class="featured-project__arrow" aria-hidden="true">↗</span>
+    </div>
+    <p class="featured-project__summary">{data.summary}</p>
+    <p class="featured-project__role">{data.role}</p>
+    <ProjectTags
+      origin={data.origin}
+      period={data.period}
+      disciplineTags={data.disciplineTags}
+      technologyTags={data.technologyTags}
+    />
+    <span class="text-link">Read project details <span aria-hidden="true">→</span></span>
+  </div>
+</a>

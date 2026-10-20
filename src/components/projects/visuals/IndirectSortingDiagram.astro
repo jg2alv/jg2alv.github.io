@@ -1,0 +1,48 @@
+---
+const records = [
+  { name: 'Bob', cpf: '300', address: 'Oak' },
+  { name: 'Ada', cpf: '100', address: 'Pine' },
+  { name: 'Cia', cpf: '200', address: 'Ash' },
+];
+const indexes = [
+  { label: 'NAME', order: [2, 1, 3], color: 'var(--accent)' },
+  { label: 'CPF', order: [2, 3, 1], color: 'var(--discipline)' },
+  { label: 'ADDRESS', order: [3, 1, 2], color: 'var(--technology)' },
+];
+---
+
+<svg class="project-diagram" viewBox="0 0 360 210" aria-hidden="true">
+  <text class="project-diagram__label" x="24" y="27">FIXED RECORDS</text>
+  <text class="project-diagram__label" x="230" y="27">INDEX VIEWS</text>
+
+  <rect x="24" y="48" width="158" height="112" rx="6" fill="var(--surface)" stroke="var(--border)" />
+  <path d="M24 76h158m-158 28h158m-158 28h158" stroke="var(--border)" />
+  <g class="project-diagram__caption">
+    <text x="32" y="66">#</text>
+    <text x="50" y="66">name</text>
+    <text x="96" y="66">CPF</text>
+    <text x="134" y="66">addr.</text>
+  </g>
+  {records.map((record, index) => (
+    <g class="project-diagram__caption">
+      <text x="32" y={94 + index * 28} fill="var(--accent)">{index + 1}</text>
+      <text x="50" y={94 + index * 28}>{record.name}</text>
+      <text x="96" y={94 + index * 28}>{record.cpf}</text>
+      <text x="134" y={94 + index * 28}>{record.address}</text>
+    </g>
+  ))}
+
+  {indexes.map((view, index) => (
+    <g>
+      <text class="project-diagram__label" x="230" y={51 + index * 48} style={`fill: ${view.color}`}>{view.label}</text>
+      <path d={`M182 104h14q8 0 8 ${index === 0 ? '-8' : index === 2 ? '8' : '0'}V${69 + index * 48}h17m-4-4 4 4-4 4`} fill="none" stroke={view.color} stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+      {view.order.map((reference, position) => (
+        <g>
+          <rect x={230 + position * 31} y={59 + index * 48} width="27" height="21" rx="3" fill="var(--surface)" stroke={view.color} />
+          <text x={243.5 + position * 31} y={73 + index * 48} text-anchor="middle" font-size="10" fill={view.color}>{reference}</text>
+        </g>
+      ))}
+    </g>
+  ))}
+  <text class="project-diagram__caption" x="180" y="198" text-anchor="middle">sort pointers · keep records in place</text>
+</svg>

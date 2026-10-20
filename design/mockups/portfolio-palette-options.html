@@ -1,0 +1,343 @@
+<div id="portfolio-palette-options">
+  <style>
+    #portfolio-palette-options {
+      width: 100%;
+      color: var(--foreground);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: transparent;
+    }
+
+    #portfolio-palette-options *,
+    #portfolio-palette-options *::before,
+    #portfolio-palette-options *::after {
+      box-sizing: border-box;
+    }
+
+    #portfolio-palette-options .ppo-option {
+      padding: 26px 0 30px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #portfolio-palette-options .ppo-option:first-child {
+      padding-top: 4px;
+    }
+
+    #portfolio-palette-options .ppo-option:last-child {
+      padding-bottom: 4px;
+      border-bottom: 0;
+    }
+
+    #portfolio-palette-options .ppo-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 18px;
+      margin-bottom: 14px;
+    }
+
+    #portfolio-palette-options .ppo-title-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+    }
+
+    #portfolio-palette-options h2,
+    #portfolio-palette-options p {
+      margin: 0;
+    }
+
+    #portfolio-palette-options h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    #portfolio-palette-options .ppo-description {
+      color: var(--muted-foreground);
+      font-size: 0.82rem;
+    }
+
+    #portfolio-palette-options .ppo-recommended {
+      padding: 3px 8px;
+      border-radius: 999px;
+      color: #87331f;
+      background: #f3d1c4;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.68rem;
+    }
+
+    #portfolio-palette-options .ppo-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    #portfolio-palette-options .ppo-preview {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--ppo-border);
+      border-radius: 17px;
+      color: var(--ppo-text);
+      background: var(--ppo-bg);
+      box-shadow: 0 12px 30px var(--ppo-shadow);
+    }
+
+    #portfolio-palette-options .ppo-preview-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    #portfolio-palette-options .ppo-mode {
+      color: var(--ppo-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.69rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #portfolio-palette-options .ppo-theme-icon {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border: 1px solid var(--ppo-border);
+      border-radius: 50%;
+      color: var(--ppo-text);
+      background: var(--ppo-surface);
+    }
+
+    #portfolio-palette-options .ppo-theme-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    #portfolio-palette-options .ppo-kicker {
+      margin-bottom: 7px;
+      color: var(--ppo-accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.69rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    #portfolio-palette-options .ppo-project-name {
+      font-size: 1.22rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    #portfolio-palette-options .ppo-summary {
+      max-width: 41ch;
+      margin-top: 9px;
+      color: var(--ppo-muted);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    #portfolio-palette-options .ppo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 18px;
+    }
+
+    #portfolio-palette-options .ppo-tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.67rem;
+      white-space: nowrap;
+    }
+
+    #portfolio-palette-options .ppo-origin {
+      color: var(--ppo-origin-text);
+      background: var(--ppo-origin-bg);
+    }
+
+    #portfolio-palette-options .ppo-course {
+      color: var(--ppo-course-text);
+      background: var(--ppo-course-bg);
+    }
+
+    #portfolio-palette-options .ppo-tech {
+      color: var(--ppo-tech-text);
+      background: var(--ppo-tech-bg);
+    }
+
+    #portfolio-palette-options .ppo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 5px;
+      margin-top: 22px;
+      overflow: hidden;
+      border-radius: 999px;
+    }
+
+    #portfolio-palette-options .ppo-strip span:nth-child(1) { background: var(--ppo-accent); }
+    #portfolio-palette-options .ppo-strip span:nth-child(2) { background: var(--ppo-origin-bg); }
+    #portfolio-palette-options .ppo-strip span:nth-child(3) { background: var(--ppo-course-bg); }
+    #portfolio-palette-options .ppo-strip span:nth-child(4) { background: var(--ppo-tech-bg); }
+
+    #portfolio-palette-options .ppo-warm-light {
+      --ppo-bg: #f5f0e7;
+      --ppo-surface: #fffaf2;
+      --ppo-text: #183338;
+      --ppo-muted: #5d7477;
+      --ppo-border: #c9d5d0;
+      --ppo-accent: #b9482d;
+      --ppo-origin-bg: #f5c7b6;
+      --ppo-origin-text: #8d321f;
+      --ppo-course-bg: #f1e2ad;
+      --ppo-course-text: #805b06;
+      --ppo-tech-bg: #bfe2d5;
+      --ppo-tech-text: #0b6b64;
+      --ppo-shadow: rgba(24, 51, 56, 0.10);
+    }
+
+    #portfolio-palette-options .ppo-warm-dark {
+      --ppo-bg: #0d1c1f;
+      --ppo-surface: #13272a;
+      --ppo-text: #edf2ea;
+      --ppo-muted: #a9bdb8;
+      --ppo-border: #31504d;
+      --ppo-accent: #ff9b78;
+      --ppo-origin-bg: #5a3027;
+      --ppo-origin-text: #ffb79f;
+      --ppo-course-bg: #403517;
+      --ppo-course-text: #f1c866;
+      --ppo-tech-bg: #21473f;
+      --ppo-tech-text: #7ed2b8;
+      --ppo-shadow: rgba(0, 0, 0, 0.28);
+    }
+
+    #portfolio-palette-options .ppo-aubergine-light {
+      --ppo-bg: #f6f3f5;
+      --ppo-surface: #fffbfd;
+      --ppo-text: #2d2430;
+      --ppo-muted: #716672;
+      --ppo-border: #ddd4db;
+      --ppo-accent: #8a3f62;
+      --ppo-origin-bg: #edd8ca;
+      --ppo-origin-text: #76513d;
+      --ppo-course-bg: #ddd9ee;
+      --ppo-course-text: #584c77;
+      --ppo-tech-bg: #d7e7de;
+      --ppo-tech-text: #3f6552;
+      --ppo-shadow: rgba(45, 36, 48, 0.08);
+    }
+
+    #portfolio-palette-options .ppo-aubergine-dark {
+      --ppo-bg: #19151a;
+      --ppo-surface: #241f25;
+      --ppo-text: #f5f0f3;
+      --ppo-muted: #bdb2b9;
+      --ppo-border: #483c44;
+      --ppo-accent: #e4a0bd;
+      --ppo-origin-bg: #51362d;
+      --ppo-origin-text: #ebbea9;
+      --ppo-course-bg: #3d3856;
+      --ppo-course-text: #c8bee9;
+      --ppo-tech-bg: #2d493e;
+      --ppo-tech-text: #a9d9c1;
+      --ppo-shadow: rgba(0, 0, 0, 0.30);
+    }
+
+    #portfolio-palette-options .ppo-graphite-light {
+      --ppo-bg: #f2f3f1;
+      --ppo-surface: #fafbf8;
+      --ppo-text: #232a2f;
+      --ppo-muted: #667077;
+      --ppo-border: #d4d9d7;
+      --ppo-accent: #865600;
+      --ppo-origin-bg: #ead8cc;
+      --ppo-origin-text: #74503b;
+      --ppo-course-bg: #d5e0e7;
+      --ppo-course-text: #405d6c;
+      --ppo-tech-bg: #dce3cb;
+      --ppo-tech-text: #516238;
+      --ppo-shadow: rgba(35, 42, 47, 0.08);
+    }
+
+    #portfolio-palette-options .ppo-graphite-dark {
+      --ppo-bg: #16191d;
+      --ppo-surface: #20252a;
+      --ppo-text: #f1f2ec;
+      --ppo-muted: #b3b9b8;
+      --ppo-border: #40484b;
+      --ppo-accent: #f2c15c;
+      --ppo-origin-bg: #4b342b;
+      --ppo-origin-text: #e5bca8;
+      --ppo-course-bg: #2d4350;
+      --ppo-course-text: #b4d5e3;
+      --ppo-tech-bg: #3a432c;
+      --ppo-tech-text: #cadc9f;
+      --ppo-shadow: rgba(0, 0, 0, 0.31);
+    }
+
+    @media (max-width: 560px) {
+      #portfolio-palette-options .ppo-pair {
+        grid-template-columns: 1fr;
+      }
+
+      #portfolio-palette-options .ppo-preview {
+        padding: 18px;
+      }
+    }
+  </style>
+
+  <section class="ppo-option">
+    <div class="ppo-title-row">
+      <div class="ppo-title-group"><h2>Warm Mineral</h2><span class="ppo-recommended">recommended</span></div>
+      <p class="ppo-description">Warm, technical, and distinctive without becoming loud.</p>
+    </div>
+    <div class="ppo-pair">
+      <article class="ppo-preview ppo-warm-light">
+        <div class="ppo-preview-head"><span class="ppo-mode">Light</span><span class="ppo-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2"></path></svg></span></div>
+        <p class="ppo-kicker">Featured project</p><p class="ppo-project-name">Orion Scheduler</p><p class="ppo-summary">A scheduling simulator built to compare fairness, latency, and throughput.</p>
+        <div class="ppo-tags"><span class="ppo-tag ppo-origin">academic</span><span class="ppo-tag ppo-course">operating-systems</span><span class="ppo-tag ppo-tech">c</span></div><div class="ppo-strip"><span></span><span></span><span></span><span></span></div>
+      </article>
+      <article class="ppo-preview ppo-warm-dark">
+        <div class="ppo-preview-head"><span class="ppo-mode">Dark</span><span class="ppo-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.7A8.4 8.4 0 0 1 9.3 3.5 8.5 8.5 0 1 0 20.5 14.7Z"></path></svg></span></div>
+        <p class="ppo-kicker">Featured project</p><p class="ppo-project-name">Orion Scheduler</p><p class="ppo-summary">A scheduling simulator built to compare fairness, latency, and throughput.</p>
+        <div class="ppo-tags"><span class="ppo-tag ppo-origin">academic</span><span class="ppo-tag ppo-course">operating-systems</span><span class="ppo-tag ppo-tech">c</span></div><div class="ppo-strip"><span></span><span></span><span></span><span></span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="ppo-option">
+    <div class="ppo-title-row"><div class="ppo-title-group"><h2>Aubergine &amp; Sage</h2></div><p class="ppo-description">Softer and more editorial, with a subtle creative character.</p></div>
+    <div class="ppo-pair">
+      <article class="ppo-preview ppo-aubergine-light">
+        <div class="ppo-preview-head"><span class="ppo-mode">Light</span><span class="ppo-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2"></path></svg></span></div>
+        <p class="ppo-kicker">Featured project</p><p class="ppo-project-name">Orion Scheduler</p><p class="ppo-summary">A scheduling simulator built to compare fairness, latency, and throughput.</p>
+        <div class="ppo-tags"><span class="ppo-tag ppo-origin">academic</span><span class="ppo-tag ppo-course">operating-systems</span><span class="ppo-tag ppo-tech">c</span></div><div class="ppo-strip"><span></span><span></span><span></span><span></span></div>
+      </article>
+      <article class="ppo-preview ppo-aubergine-dark">
+        <div class="ppo-preview-head"><span class="ppo-mode">Dark</span><span class="ppo-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.7A8.4 8.4 0 0 1 9.3 3.5 8.5 8.5 0 1 0 20.5 14.7Z"></path></svg></span></div>
+        <p class="ppo-kicker">Featured project</p><p class="ppo-project-name">Orion Scheduler</p><p class="ppo-summary">A scheduling simulator built to compare fairness, latency, and throughput.</p>
+        <div class="ppo-tags"><span class="ppo-tag ppo-origin">academic</span><span class="ppo-tag ppo-course">operating-systems</span><span class="ppo-tag ppo-tech">c</span></div><div class="ppo-strip"><span></span><span></span><span></span><span></span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="ppo-option">
+    <div class="ppo-title-row"><div class="ppo-title-group"><h2>Graphite &amp; Saffron</h2></div><p class="ppo-description">More neutral and engineering-oriented, with a focused warm accent.</p></div>
+    <div class="ppo-pair">
+      <article class="ppo-preview ppo-graphite-light">
+        <div class="ppo-preview-head"><span class="ppo-mode">Light</span><span class="ppo-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2"></path></svg></span></div>
+        <p class="ppo-kicker">Featured project</p><p class="ppo-project-name">Orion Scheduler</p><p class="ppo-summary">A scheduling simulator built to compare fairness, latency, and throughput.</p>
+        <div class="ppo-tags"><span class="ppo-tag ppo-origin">academic</span><span class="ppo-tag ppo-course">operating-systems</span><span class="ppo-tag ppo-tech">c</span></div><div class="ppo-strip"><span></span><span></span><span></span><span></span></div>
+      </article>
+      <article class="ppo-preview ppo-graphite-dark">
+        <div class="ppo-preview-head"><span class="ppo-mode">Dark</span><span class="ppo-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.7A8.4 8.4 0 0 1 9.3 3.5 8.5 8.5 0 1 0 20.5 14.7Z"></path></svg></span></div>
+        <p class="ppo-kicker">Featured project</p><p class="ppo-project-name">Orion Scheduler</p><p class="ppo-summary">A scheduling simulator built to compare fairness, latency, and throughput.</p>
+        <div class="ppo-tags"><span class="ppo-tag ppo-origin">academic</span><span class="ppo-tag ppo-course">operating-systems</span><span class="ppo-tag ppo-tech">c</span></div><div class="ppo-strip"><span></span><span></span><span></span><span></span></div>
+      </article>
+    </div>
+  </section>
+</div>

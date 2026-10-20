@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import IconLink from '../components/common/IconLink.astro';
+import FeaturedProject from '../components/projects/FeaturedProject.astro';
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/paths';
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.order - a.data.order);
+const featuredProjects = projects.filter(({ data }) => data.featured);
+const homeProjects = (featuredProjects.length > 0 ? featuredProjects : projects).slice(0, 3);
+---
+
+<BaseLayout active="home">
+  <main id="main-content">
+    <section class="hero page-shell" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <p class="eyebrow">Hello, I'm</p>
+        <h1 id="hero-title">{site.name}.</h1>
+        <p class="hero__role">{site.role}.</p>
+        <p class="hero__introduction">
+          I turn ideas from computer science into carefully built, clearly documented software — from systems work to interactive web tools.
+        </p>
+        <div class="hero__actions">
+          <a class="primary-button" href={withBase('/projects/')}>Explore projects <span aria-hidden="true">→</span></a>
+          <nav class="social-links social-links--hero" aria-label="External profiles and contact">
+            {
+              site.socialLinks.map((link) => (
+                <IconLink href={link.href} label={link.label} icon={link.icon} tooltipId={`home-${link.id}-tooltip`} newTab={link.external} />
+              ))
+            }
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section page-shell section-block" aria-labelledby="about-title">
+      <div class="section-heading">
+        <h2 class="eyebrow" id="about-title">About</h2>
+      </div>
+      <div class="about-section__copy">
+        <p>
+          I'm a Computer Science student at <strong>{site.institution}</strong>, interested in understanding how software behaves from its foundations to the experience it creates for people.
+        </p>
+        <p>
+          This portfolio is intentionally centered on projects. Each case study records the problem, the decisions that shaped the solution, my contribution, and what I learned while building it.
+        </p>
+      </div>
+    </section>
+
+    <section class="selected-projects page-shell section-block" aria-labelledby="selected-projects-title">
+      <div class="section-heading section-heading--split">
+        <h2 class="eyebrow" id="selected-projects-title">Projects</h2>
+        <a class="text-link" href={withBase('/projects/')}>View all projects <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="featured-projects">
+        {homeProjects.map((project) => <FeaturedProject project={project} />)}
+      </div>
+      <a class="secondary-button selected-projects__more" href={withBase('/projects/')}>View all projects</a>
+    </section>
+  </main>
+</BaseLayout>

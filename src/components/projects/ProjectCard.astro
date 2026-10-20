@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../../utils/paths';
+import ProjectTags from '../common/ProjectTags.astro';
+import ProjectVisual from './ProjectVisual.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const filterValues = [
+  data.title,
+  data.summary,
+  data.role,
+  data.discipline,
+  data.period,
+  data.origin,
+  ...data.disciplineTags,
+  ...data.technologyTags,
+]
+  .join(' ')
+  .toLowerCase();
+---
+
+<article
+  class="project-card"
+  data-project-card
+  data-search={filterValues}
+  data-origin={data.origin}
+  data-period={data.period}
+  data-discipline={data.disciplineTags.join(' ')}
+  data-technology={data.technologyTags.join(' ')}
+>
+  <a class="project-card__link" href={withBase(`/projects/${project.id}/`)} aria-label={`Read about ${data.title}`}>
+    <ProjectVisual variant={data.visual} />
+    <div class="project-card__content">
+      <h2>{data.title}</h2>
+      <p>{data.summary}</p>
+      <ProjectTags
+        origin={data.origin}
+        period={data.period}
+        disciplineTags={data.disciplineTags}
+        technologyTags={data.technologyTags}
+        compact
+      />
+      <span class="project-card__action">View project <span aria-hidden="true">↗</span></span>
+    </div>
+  </a>
+</article>

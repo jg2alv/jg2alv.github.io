@@ -35,6 +35,7 @@ import AudioMetadataDiagram from './visuals/AudioMetadataDiagram.astro';
 import PracticeArchiveDiagram from './visuals/PracticeArchiveDiagram.astro';
 import StudyPackDiagram from './visuals/StudyPackDiagram.astro';
 import CombinationTreeDiagram from './visuals/CombinationTreeDiagram.astro';
+import GeneticProgrammingDiagram from './visuals/GeneticProgrammingDiagram.astro';
 
 interface Props {
   variant: CollectionEntry<'projects'>['data']['visual'];
@@ -77,6 +78,7 @@ const descriptions: Partial<Record<Props['variant'], string>> = {
   'practice-archive': 'An archive of programming practice branches into web interfaces, object-oriented contracts and early prototypes; the schematic represents independent examples with varied completion levels.',
   'study-pack': 'A schematic browser-to-PDF workflow collects question and solution images, then orders illustrative pages Q1, Q2, S1 and S2 into a study pack; it represents the prototype design rather than a verified current platform session.',
   'combination-tree': 'The synthetic alphabet a and b yields two strings of length one and four strings of length two, illustrating six Cartesian-product combinations without implying measured performance.',
+  'genetic-programming': 'An illustrative expression tree is shown alongside roulette, tournament and epsilon-lexicase parent selection, with an RMSE, selection and variation workflow; the expression is schematic, not a measured result.',
 };
 const description = descriptions[variant];
 ---
@@ -119,6 +121,7 @@ const description = descriptions[variant];
     {variant === 'practice-archive' && <PracticeArchiveDiagram />}
     {variant === 'study-pack' && <StudyPackDiagram />}
     {variant === 'combination-tree' && <CombinationTreeDiagram />}
+    {variant === 'genetic-programming' && <GeneticProgrammingDiagram />}
     {
       variant === 'scheduler' && (
         <div class="scheduler-graphic">

@@ -12,9 +12,6 @@ technologyTags:
   - numpy
   - scikit-learn
   - matplotlib
-  - seaborn
-  - networkx
-  - jupyter
 role: "Helped choose the dataset and mining task; contributed exploratory analysis, visualization, and interpretation."
 repository: https://github.com/jg2alv/tp4-md
 featured: false

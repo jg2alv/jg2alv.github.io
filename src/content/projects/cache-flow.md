@@ -8,9 +8,7 @@ disciplineTags:
   - oc1
 technologyTags:
   - python
-  - jupyter
   - pandas
-  - ipywidgets
 role: Implemented the cache and hit-and-miss logic and documented the code with inline comments in a team project.
 repository: https://github.com/jg2alv/tp3-oc1
 featured: false

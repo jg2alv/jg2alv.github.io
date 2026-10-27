@@ -8,7 +8,6 @@ technologyTags:
   - node-js
   - express
   - mongodb
-  - mongoose
   - mustache
   - html
   - css

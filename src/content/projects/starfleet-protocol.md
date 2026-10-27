@@ -8,8 +8,6 @@ disciplineTags:
   - redes
 technologyTags:
   - c
-  - tcp
-  - posix-sockets
 role: "Implemented the TCP client-server protocol, combat rules, and session-state handling in C."
 repository: https://github.com/jg2alv/tp1-redes
 featured: false

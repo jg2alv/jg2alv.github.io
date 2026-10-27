@@ -6,10 +6,6 @@ origin: personal
 technologyTags:
   - python
   - cli
-  - argparse
-  - itertools
-  - decimal
-  - combinatorics
 role: ""
 repository: https://github.com/jg2alv/rockyou
 featured: false

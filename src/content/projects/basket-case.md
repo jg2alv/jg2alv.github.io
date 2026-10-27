@@ -9,10 +9,7 @@ disciplineTags:
 technologyTags:
   - python
   - pandas
-  - mlxtend
-  - jupyter
   - matplotlib
-  - networkx
 role: "Owned data understanding and preparation, including quality diagnostics, cleaning, transaction construction, and critical comparison of LLM recommendations."
 repository: https://github.com/jg2alv/tp1-md
 featured: false

@@ -11,9 +11,7 @@ technologyTags:
   - pandas
   - numpy
   - scikit-learn
-  - jupyter
   - matplotlib
-  - seaborn
 role: "Explored data quality and feature distributions and prepared the Spotify data for clustering."
 repository: https://github.com/jg2alv/tp2-md
 featured: false

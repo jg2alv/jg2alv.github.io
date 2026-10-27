@@ -36,6 +36,7 @@ import PracticeArchiveDiagram from './visuals/PracticeArchiveDiagram.astro';
 import StudyPackDiagram from './visuals/StudyPackDiagram.astro';
 import CombinationTreeDiagram from './visuals/CombinationTreeDiagram.astro';
 import GeneticProgrammingDiagram from './visuals/GeneticProgrammingDiagram.astro';
+import PixelCombinationsDiagram from './visuals/PixelCombinationsDiagram.astro';
 
 interface Props {
   variant: CollectionEntry<'projects'>['data']['visual'];
@@ -79,6 +80,7 @@ const descriptions: Partial<Record<Props['variant'], string>> = {
   'study-pack': 'A schematic browser-to-PDF workflow collects question and solution images, then orders illustrative pages Q1, Q2, S1 and S2 into a study pack; it represents the prototype design rather than a verified current platform session.',
   'combination-tree': 'The synthetic alphabet a and b yields two strings of length one and four strings of length two, illustrating six Cartesian-product combinations without implying measured performance.',
   'genetic-programming': 'An illustrative expression tree is shown alongside roulette, tournament and epsilon-lexicase parent selection, with an RMSE, selection and variation workflow; the expression is schematic, not a measured result.',
+  'pixel-combinations': 'A schematic two-color palette gives two theoretical arrangements for one pixel and sixteen for four pixels; JPEG storage is estimated from three samples rather than measured across the full image space.',
 };
 const description = descriptions[variant];
 ---
@@ -122,6 +124,7 @@ const description = descriptions[variant];
     {variant === 'study-pack' && <StudyPackDiagram />}
     {variant === 'combination-tree' && <CombinationTreeDiagram />}
     {variant === 'genetic-programming' && <GeneticProgrammingDiagram />}
+    {variant === 'pixel-combinations' && <PixelCombinationsDiagram />}
     {
       variant === 'scheduler' && (
         <div class="scheduler-graphic">

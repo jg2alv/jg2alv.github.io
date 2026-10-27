@@ -6,12 +6,8 @@ origin: personal
 technologyTags:
   - python
   - cli
-  - asyncio
   - pyppeteer
-  - requests
-  - pillow
   - browser-automation
-  - pdf
 role: ""
 repository: https://github.com/jg2alv/mbsh
 featured: false

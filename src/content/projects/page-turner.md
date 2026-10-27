@@ -8,7 +8,6 @@ disciplineTags:
   - so
 technologyTags:
   - c
-  - make
 role: "Authored the final report, covering design rationale, architecture, experimental comparisons, page-table trade-offs, and conclusions."
 repository: https://github.com/jg2alv/tp2-so
 featured: false

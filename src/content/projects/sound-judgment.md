@@ -11,9 +11,6 @@ technologyTags:
   - pandas
   - numpy
   - scikit-learn
-  - xgboost
-  - shap
-  - jupyter
 role: "Prepared the data and popularity-derived target for acoustic classification, with exploratory analysis and quality checks."
 repository: https://github.com/jg2alv/tp3-md
 featured: false

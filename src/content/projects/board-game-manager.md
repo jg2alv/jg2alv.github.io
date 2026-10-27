@@ -8,9 +8,6 @@ disciplineTags:
   - pds2
 technologyTags:
   - cpp
-  - doctest
-  - doxygen
-  - make
 role: Designed class interactions and implemented and tested the Sistema and Xadrez classes.
 repository: https://github.com/jg2alv/tp1-pds2
 featured: false

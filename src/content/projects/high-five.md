@@ -7,7 +7,7 @@ discipline: Introdução aos Sistemas Lógicos
 disciplineTags:
   - isl
 technologyTags:
-  - systemverilog
+  - verilog
 role: Individually designed and documented the combinational logic and implemented the SystemVerilog module and simulation testbench.
 repository: https://github.com/jg2alv/tp1-isl
 featured: false

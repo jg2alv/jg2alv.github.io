@@ -5,7 +5,6 @@ period: "2023-01"
 origin: personal
 technologyTags:
   - python
-  - pypdf
 role: "Implemented the local PDF merge-and-filter workflow, including argument parsing and page-selection validation."
 repository: https://github.com/jg2alv/pythreader
 featured: false

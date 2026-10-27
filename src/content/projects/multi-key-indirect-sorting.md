@@ -8,7 +8,6 @@ disciplineTags:
   - ed
 technologyTags:
   - cpp
-  - make
 role: Independently designed and implemented the record model, file parser, pointer-based indexes, and reusable sorting routines.
 repository: https://github.com/jg2alv/tp1-ed
 featured: false

@@ -8,7 +8,6 @@ disciplineTags:
   - ed
 technologyTags:
   - cpp
-  - make
 role: Independently implemented the patient and procedure models, linked queues, min-heap scheduler, and event-driven simulation loop.
 repository: https://github.com/jg2alv/tp2-ed
 featured: false

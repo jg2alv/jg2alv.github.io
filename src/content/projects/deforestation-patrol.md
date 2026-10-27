@@ -8,8 +8,6 @@ disciplineTags:
   - redes
 technologyTags:
   - c
-  - udp
-  - posix-sockets
   - pthreads
 role: "Implemented UDP messaging, Dijkstra-based dispatch, and synchronized POSIX client threads in C."
 repository: https://github.com/jg2alv/tp2-redes

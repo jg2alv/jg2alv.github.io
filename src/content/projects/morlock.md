@@ -8,7 +8,6 @@ technologyTags:
   - cli
   - json
   - bcrypt
-  - binary-files
 role: ""
 repository: https://github.com/jg2alv/morlock
 featured: false

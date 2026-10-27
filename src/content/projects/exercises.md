@@ -12,8 +12,6 @@ technologyTags:
   - python
   - php
   - swift
-  - swiftui
-  - racket
   - electron
   - unity
 role: ""

@@ -8,11 +8,8 @@ disciplineTags:
   - icd
 technologyTags:
   - python
-  - jupyter
   - pandas
   - numpy
-  - plotly
-  - scipy
   - scikit-learn
 role: Responsible for data cleaning and exploratory data analysis in a team project.
 repository: https://github.com/jg2alv/tp1-icd

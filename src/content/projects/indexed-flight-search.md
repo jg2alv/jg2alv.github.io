@@ -8,7 +8,6 @@ disciplineTags:
   - ed
 technologyTags:
   - cpp
-  - make
 role: Independently implemented the flight model, AVL indexes, query parser, linked lists, and result-ranking algorithm.
 repository: https://github.com/jg2alv/tp3-ed
 featured: false

@@ -13,8 +13,6 @@ technologyTags:
   - node-js
   - express
   - postgresql
-  - jest
-  - playwright
 role: "Implemented the shopping cart across frontend and backend, developed the WhatsApp checkout flow, and wrote tests for both features."
 repository: https://github.com/jg2alv/tp1-es
 featured: false

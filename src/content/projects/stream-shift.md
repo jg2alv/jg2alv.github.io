@@ -8,8 +8,6 @@ disciplineTags:
   - so
 technologyTags:
   - c
-  - linux
-  - posix
 role: "Implemented input and output redirection in a paired C/Linux shell project."
 repository: https://github.com/jg2alv/tp1-so
 featured: false

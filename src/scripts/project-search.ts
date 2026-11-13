@@ -1,3 +1,5 @@
+import { currentLanguage } from './i18n';
+
 function queryTerms(query: string) {
   return query
     .trim()
@@ -58,9 +60,13 @@ export function initProjectSearch() {
 
     document.querySelector<HTMLElement>('[data-no-results]')?.toggleAttribute('hidden', visible !== 0);
     if (status) {
-      status.textContent = visible === cards.length && activeCount === 0 && terms.length === 0
-        ? `Showing all ${cards.length} projects.`
-        : `Showing ${visible} of ${cards.length} projects.`;
+      const showingAll = visible === cards.length && activeCount === 0 && terms.length === 0;
+      const language = currentLanguage();
+      status.textContent = language === 'pt'
+        ? showingAll ? `Exibindo todos os ${cards.length} projetos.` : `Exibindo ${visible} de ${cards.length} projetos.`
+        : language === 'es'
+          ? showingAll ? `Mostrando los ${cards.length} proyectos.` : `Mostrando ${visible} de ${cards.length} proyectos.`
+          : showingAll ? `Showing all ${cards.length} projects.` : `Showing ${visible} of ${cards.length} projects.`;
     }
     if (clear) clear.disabled = activeCount === 0 && terms.length === 0;
     if (count) {
@@ -70,6 +76,7 @@ export function initProjectSearch() {
   };
 
   input?.addEventListener('input', update);
+  document.addEventListener('portfolio:language-change', update);
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       const value = button.dataset.filterValue;

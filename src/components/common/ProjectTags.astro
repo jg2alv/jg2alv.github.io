@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 ---
 
-<div class:list={['project-tags', { 'project-tags--compact': compact }]} aria-label="Project tags">
+<div class:list={['project-tags', { 'project-tags--compact': compact }]} aria-label="Project tags" data-i18n-aria-label-en="Project tags" data-i18n-aria-label-pt="Tags do projeto" data-i18n-aria-label-es="Etiquetas del proyecto">
   <span class="project-tag project-tag--origin">#{origin}</span>
   <span class="project-tag project-tag--period">#{period}</span>
   {disciplineTags.map((tag) => <span class="project-tag project-tag--discipline">#{tag}</span>)}

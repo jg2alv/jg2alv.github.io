@@ -18,6 +18,9 @@ const isWebLink = /^https?:/.test(href);
     class="icon-link"
     href={href}
     aria-label={label}
+    data-i18n-aria-label-en={icon === 'contact' ? 'Contact' : undefined}
+    data-i18n-aria-label-pt={icon === 'contact' ? 'Contato' : undefined}
+    data-i18n-aria-label-es={icon === 'contact' ? 'Contacto' : undefined}
     aria-describedby={tooltipId}
     target={newTab ? '_blank' : undefined}
     rel={newTab && isWebLink ? 'noreferrer' : undefined}
@@ -71,5 +74,5 @@ const isWebLink = /^https?:/.test(href);
       )
     }
   </a>
-  <span class="icon-tooltip" id={tooltipId} role="tooltip">{label}</span>
+  <span class="icon-tooltip" id={tooltipId} role="tooltip" data-i18n-en={icon === 'contact' ? 'Contact' : undefined} data-i18n-pt={icon === 'contact' ? 'Contato' : undefined} data-i18n-es={icon === 'contact' ? 'Contacto' : undefined}>{label}</span>
 </span>

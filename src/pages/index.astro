@@ -1,62 +1,149 @@
 ---
 import { getCollection } from 'astro:content';
 import IconLink from '../components/common/IconLink.astro';
-import FeaturedProject from '../components/projects/FeaturedProject.astro';
+import ProjectVisual from '../components/projects/ProjectVisual.astro';
 import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../utils/paths';
 
-const projects = (await getCollection('projects')).sort((a, b) => b.data.order - a.data.order);
-const featuredProjects = projects.filter(({ data }) => data.featured);
-const homeProjects = (featuredProjects.length > 0 ? featuredProjects : projects).slice(0, 3);
+const projects = await getCollection('projects');
+const selectedIds = ['cookie-jar', 'page-turner', 'deforestation-patrol'];
+const selectedProjects = selectedIds.flatMap((id) => projects.find((project) => project.id === id) ?? []);
+const summaries: Record<string, { en: string; pt: string; es: string }> = {
+  'cookie-jar': {
+    en: 'A storefront for a family-run cookie business, with an integrated cart and a WhatsApp checkout flow.',
+    pt: 'Uma loja virtual para uma empresa familiar de cookies, com carrinho integrado e finalização de pedidos pelo WhatsApp.',
+    es: 'Una tienda en línea para un negocio familiar de galletas, con carrito integrado y pedidos a través de WhatsApp.',
+  },
+  'page-turner': {
+    en: 'A virtual-memory simulator in C. Replacement policies, page tables, and an experimental analysis of their trade-offs.',
+    pt: 'Um simulador de memória virtual em C. Políticas de substituição, tabelas de páginas e uma análise experimental de seus compromissos.',
+    es: 'Un simulador de memoria virtual en C. Políticas de reemplazo, tablas de páginas y un análisis experimental de sus ventajas y limitaciones.',
+  },
+  'deforestation-patrol': {
+    en: 'An environmental monitoring simulation with drone teams, UDP messaging, POSIX threads, and shortest paths.',
+    pt: 'Uma simulação de monitoramento ambiental com equipes de drones, mensagens UDP, threads POSIX e caminhos mínimos.',
+    es: 'Una simulación de monitoreo ambiental con equipos de drones, mensajes UDP, hilos POSIX y rutas más cortas.',
+  },
+};
+const skillGroups = [
+  { en: 'Languages', pt: 'Linguagens', es: 'Lenguajes', tags: ['c', 'cpp', 'python', 'javascript', 'julia', 'assembly'] },
+  { en: 'Systems & web', pt: 'Sistemas e web', es: 'Sistemas y web', tags: ['pthreads', 'node-js', 'express', 'html', 'css', 'postgresql'] },
+  { en: 'Data & tools', pt: 'Dados e ferramentas', es: 'Datos y herramientas', tags: ['pandas', 'numpy', 'scikit-learn', 'pytorch', 'jump', 'gurobi'] },
+];
+const technologyNames: Record<string, string> = {
+  c: 'C', cpp: 'C++', python: 'Python', javascript: 'JavaScript', julia: 'Julia', assembly: 'Assembly',
+  pthreads: 'POSIX threads', 'node-js': 'Node.js', express: 'Express', html: 'HTML', css: 'CSS', postgresql: 'PostgreSQL',
+  pandas: 'Pandas', numpy: 'NumPy', 'scikit-learn': 'scikit-learn', pytorch: 'PyTorch', jump: 'JuMP', gurobi: 'Gurobi',
+};
+const usedTechnologies = new Set<string>(projects.flatMap((project) => project.data.technologyTags));
+const lattes = site.socialLinks.find((link) => link.id === 'lattes')!;
+const orcid = site.socialLinks.find((link) => link.id === 'orcid')!;
 ---
 
 <BaseLayout active="home">
-  <main id="main-content">
-    <section class="hero page-shell" aria-labelledby="hero-title">
+  <main id="main-content" class="portfolio-main">
+    <section id="home" class="hero page-shell" data-section aria-labelledby="hero-title">
       <div class="hero__content">
-        <p class="eyebrow">Hello, I'm</p>
-        <h1 id="hero-title">{site.name}.</h1>
-        <p class="hero__role">{site.role}.</p>
-        <p class="hero__introduction">
-          I turn ideas from computer science into carefully built, clearly documented software — from systems work to interactive web tools.
+        <p class="hero__kicker">
+          <span data-i18n-en="B.Sc." data-i18n-pt="B.Sc." data-i18n-es="B.Sc.">B.Sc.</span>
+          <span class="hero__kicker-divider" aria-hidden="true">·</span>
+          <span>DCC/UFMG</span>
+          <span class="hero__kicker-divider" aria-hidden="true">·</span>
+          <span>Belo Horizonte/MG</span>
         </p>
+        <h1 id="hero-title" class="hero__name">
+          <span>João Gabriel</span>
+          <span class="hero__name-accent">Vaz<span class="hero__cursor" aria-hidden="true">_</span></span>
+        </h1>
         <div class="hero__actions">
-          <a class="primary-button" href={withBase('/projects/')}>Explore projects <span aria-hidden="true">→</span></a>
-          <nav class="social-links social-links--hero" aria-label="External profiles and contact">
-            {
-              site.socialLinks.map((link) => (
-                <IconLink href={link.href} label={link.label} icon={link.icon} tooltipId={`home-${link.id}-tooltip`} newTab={link.external} />
-              ))
-            }
-          </nav>
+          <a class="primary-button" href="#projects"><span data-i18n-en="Explore works" data-i18n-pt="Explorar projetos" data-i18n-es="Explorar proyectos">Explore works</span><span aria-hidden="true">↗</span></a>
+          <a class="secondary-button" href={withBase('/resume-joao-vaz.pdf')} target="_blank" rel="noreferrer"><span data-i18n-en="Resume" data-i18n-pt="Currículo" data-i18n-es="Currículum">Resume</span><svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+        </div>
+        <nav class="social-links hero__socials" aria-label="Social profiles and email" data-i18n-aria-label-en="Social profiles and email" data-i18n-aria-label-pt="Perfis sociais e email" data-i18n-aria-label-es="Perfiles sociales y correo electrónico">
+          {site.socialLinks.map((link) => <IconLink href={link.href} label={link.label} icon={link.icon} tooltipId={`home-${link.id}-tooltip`} newTab={link.external} />)}
+        </nav>
+      </div>
+      <div class="hero__footer">
+        <a class="hero__scroll" href="#about"><span aria-hidden="true">↓</span><span data-i18n-en="Scroll to explore" data-i18n-pt="Role para explorar" data-i18n-es="Desplázate para explorar">Scroll to explore</span></a>
+        <span class="hero__coordinates">19°55′ S &nbsp; 43°56′ W</span>
+      </div>
+    </section>
+
+    <section id="about" class="portfolio-section page-shell" data-section aria-labelledby="about-title">
+      <div class="section-label"><span>01 /</span><span data-i18n-en="A little context" data-i18n-pt="Um pouco de contexto" data-i18n-es="Un poco de contexto">A little context</span></div>
+      <h2 id="about-title" class="section-title" data-i18n-en="About me." data-i18n-pt="Sobre mim." data-i18n-es="Sobre mí.">About me.</h2>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p data-i18n-en="I'm a Computer Science bachelor student at Universidade Federal de Minas Gerais, based in Belo Horizonte, Brazil." data-i18n-pt="Sou estudante de graduação em Ciência da Computação na Universidade Federal de Minas Gerais, em Belo Horizonte, Brasil." data-i18n-es="Soy estudiante de grado en Ciencias de la Computación en la Universidade Federal de Minas Gerais, en Belo Horizonte, Brasil.">I'm a Computer Science bachelor student at Universidade Federal de Minas Gerais, based in Belo Horizonte, Brazil.</p>
+          <p data-i18n-en="I like understanding software from the inside out: the algorithms behind a decision, the systems that make it work, and the experience it creates for people." data-i18n-pt="Gosto de entender software de dentro para fora: os algoritmos por trás de uma decisão, os sistemas que a tornam possível e a experiência que ela cria para as pessoas." data-i18n-es="Me gusta entender el software desde sus fundamentos: los algoritmos detrás de una decisión, los sistemas que la hacen posible y la experiencia que crea para las personas.">I like understanding software from the inside out: the algorithms behind a decision, the systems that make it work, and the experience it creates for people.</p>
+          <p data-i18n-en="This portfolio brings together academic and personal projects. Each case study records the problem, my contribution, and what I learned while building it." data-i18n-pt="Este portfólio reúne projetos acadêmicos e pessoais. Cada estudo de caso apresenta o problema, minha contribuição e o que aprendi durante o desenvolvimento." data-i18n-es="Este portafolio reúne proyectos académicos y personales. Cada caso de estudio presenta el problema, mi contribución y lo que aprendí durante su desarrollo.">This portfolio brings together academic and personal projects. Each case study records the problem, my contribution, and what I learned while building it.</p>
+        </div>
+        <dl class="about-facts">
+          <div><dt data-i18n-en="Currently" data-i18n-pt="Atualmente" data-i18n-es="Actualmente">Currently</dt><dd data-i18n-en="Computer Science · Bachelor's" data-i18n-pt="Ciência da Computação · Bacharelado" data-i18n-es="Ciencias de la Computación · Grado">Computer Science · Bachelor's</dd></div>
+          <div><dt data-i18n-en="Institution" data-i18n-pt="Instituição" data-i18n-es="Institución">Institution</dt><dd>DCC / UFMG</dd></div>
+          <div><dt data-i18n-en="Based in" data-i18n-pt="Localização" data-i18n-es="Ubicación">Based in</dt><dd>Belo Horizonte, MG · Brasil</dd></div>
+          <div><dt data-i18n-en="Focus" data-i18n-pt="Foco" data-i18n-es="Enfoque">Focus</dt><dd data-i18n-en="Software, systems & data" data-i18n-pt="Software, sistemas e dados" data-i18n-es="Software, sistemas y datos">Software, systems &amp; data</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="projects" class="portfolio-section page-shell" data-section aria-labelledby="projects-title">
+      <div class="section-label"><span>02 /</span><span data-i18n-en="Selected work" data-i18n-pt="Trabalhos selecionados" data-i18n-es="Proyectos seleccionados">Selected work</span></div>
+      <div class="section-heading--split">
+        <h2 id="projects-title" class="section-title" data-i18n-en="Ideas into code." data-i18n-pt="Ideias em código." data-i18n-es="Ideas en código.">Ideas into code.</h2>
+        <a class="text-link" href={withBase('/projects/')}><span data-i18n-en="All projects" data-i18n-pt="Todos os projetos" data-i18n-es="Todos los proyectos">All projects</span><span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="work-grid">
+        {selectedProjects.map((project, index) => (
+          <a class="work-card" href={withBase(`/projects/${project.id}/`)}>
+            <div class="work-card__visual"><ProjectVisual variant={project.data.visual} /></div>
+            <div class="work-card__body">
+              <p class="work-card__meta"><span>0{index + 1}</span><span>{project.data.period}</span><span aria-hidden="true">↗</span></p>
+              <h3 class="work-card__title">{project.data.title}</h3>
+              <p class="work-card__summary" data-i18n-en={summaries[project.id].en} data-i18n-pt={summaries[project.id].pt} data-i18n-es={summaries[project.id].es}>{summaries[project.id].en}</p>
+              <div class="work-card__tags">{project.data.technologyTags.slice(0, 3).map((tag) => <span>{technologyNames[tag] ?? tag}</span>)}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="section-note" data-i18n-en="More experiments, implementations, and case studies in the project archive." data-i18n-pt="Mais experimentos, implementações e estudos de caso no arquivo de projetos." data-i18n-es="Más experimentos, implementaciones y casos de estudio en el archivo de proyectos.">More experiments, implementations, and case studies in the project archive.</p>
+    </section>
+
+    <section id="skills" class="portfolio-section page-shell" data-section aria-labelledby="skills-title">
+      <div class="section-label"><span>03 /</span><span data-i18n-en="The toolkit" data-i18n-pt="Ferramentas de trabalho" data-i18n-es="Herramientas de trabajo">The toolkit</span></div>
+      <h2 id="skills-title" class="section-title" data-i18n-en="Skills & technologies." data-i18n-pt="Habilidades e tecnologias." data-i18n-es="Habilidades y tecnologías.">Skills &amp; technologies.</h2>
+      <p class="section-intro" data-i18n-en="Technologies I've worked with across the projects in this portfolio. Always learning, one problem at a time." data-i18n-pt="Tecnologias que utilizei nos projetos deste portfólio. Sempre aprendendo, um problema de cada vez." data-i18n-es="Tecnologías que he utilizado en los proyectos de este portafolio. Siempre aprendiendo, un problema a la vez.">Technologies I've worked with across the projects in this portfolio. Always learning, one problem at a time.</p>
+      <div class="skills-list">
+        {skillGroups.map((group, index) => (
+          <div class="skill-row">
+            <span class="skill-row__number" aria-hidden="true">0{index + 1}</span>
+            <h3 class="skill-row__title" data-i18n-en={group.en} data-i18n-pt={group.pt} data-i18n-es={group.es}>{group.en}</h3>
+            <div class="skill-row__items">{group.tags.filter((tag) => usedTechnologies.has(tag)).map((tag) => <span>{technologyNames[tag]}</span>)}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="publications" class="portfolio-section page-shell" data-section aria-labelledby="publications-title">
+      <div class="section-label"><span>04 /</span><span data-i18n-en="Academic work" data-i18n-pt="Produção acadêmica" data-i18n-es="Producción académica">Academic work</span></div>
+      <h2 id="publications-title" class="section-title" data-i18n-en="Publications." data-i18n-pt="Publicações." data-i18n-es="Publicaciones.">Publications.</h2>
+      <div class="publication-empty">
+        <span class="publication-empty__symbol" aria-hidden="true">[&nbsp; ]</span>
+        <div>
+          <h3 data-i18n-en="No publications listed yet." data-i18n-pt="Nenhuma publicação listada ainda." data-i18n-es="Aún no hay publicaciones listadas.">No publications listed yet.</h3>
+          <p data-i18n-en="For my academic profile and activities, visit Lattes or ORCID." data-i18n-pt="Para consultar meu perfil e minhas atividades acadêmicas, acesse o Lattes ou o ORCID." data-i18n-es="Para consultar mi perfil y mis actividades académicas, visita Lattes u ORCID.">For my academic profile and activities, visit Lattes or ORCID.</p>
+          <div class="publication-empty__links"><a class="text-link" href={lattes.href} target="_blank" rel="noreferrer">Lattes <span aria-hidden="true">↗</span></a><a class="text-link" href={orcid.href} target="_blank" rel="noreferrer">ORCID <span aria-hidden="true">↗</span></a></div>
         </div>
       </div>
     </section>
 
-    <section class="about-section page-shell section-block" aria-labelledby="about-title">
-      <div class="section-heading">
-        <h2 class="eyebrow" id="about-title">About</h2>
-      </div>
-      <div class="about-section__copy">
-        <p>
-          I'm a Computer Science student at <strong>{site.institution}</strong>, interested in understanding how software behaves from its foundations to the experience it creates for people.
-        </p>
-        <p>
-          This portfolio is intentionally centered on projects. Each case study records the problem, the decisions that shaped the solution, my contribution, and what I learned while building it.
-        </p>
-      </div>
-    </section>
-
-    <section class="selected-projects page-shell section-block" aria-labelledby="selected-projects-title">
-      <div class="section-heading section-heading--split">
-        <h2 class="eyebrow" id="selected-projects-title">Projects</h2>
-        <a class="text-link" href={withBase('/projects/')}>View all projects <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="featured-projects">
-        {homeProjects.map((project) => <FeaturedProject project={project} />)}
-      </div>
-      <a class="secondary-button selected-projects__more" href={withBase('/projects/')}>View all projects</a>
+    <section id="contact" class="portfolio-section page-shell" data-section aria-labelledby="contact-title">
+      <div class="section-label"><span>05 /</span><span data-i18n-en="Get in touch" data-i18n-pt="Entre em contato" data-i18n-es="Ponte en contacto">Get in touch</span></div>
+      <h2 id="contact-title" class="contact-heading"><span data-i18n-en="Let's build" data-i18n-pt="Vamos construir" data-i18n-es="Construyamos">Let's build</span><br /><span data-i18n-en="something good." data-i18n-pt="algo bom." data-i18n-es="algo bueno.">something good.</span></h2>
+      <p class="section-intro" data-i18n-en="Have a project, a question, or an idea to share? My inbox is open." data-i18n-pt="Tem um projeto, uma pergunta ou uma ideia para compartilhar? Vamos conversar." data-i18n-es="¿Tienes un proyecto, una pregunta o una idea para compartir? Escríbeme.">Have a project, a question, or an idea to share? My inbox is open.</p>
+      <a class="contact-email" href={`mailto:${site.email}`}>{site.email}<span aria-hidden="true">↗</span></a>
+      <nav class="contact-links" aria-label="Find me online" data-i18n-aria-label-en="Find me online" data-i18n-aria-label-pt="Me encontre online" data-i18n-aria-label-es="Encuéntrame en línea">{site.socialLinks.filter((link) => link.id !== 'contact').map((link) => <a href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</nav>
     </section>
   </main>
 </BaseLayout>

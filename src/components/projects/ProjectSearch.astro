@@ -12,27 +12,27 @@ const periods = unique(projects.map(({ data }) => data.period));
 const disciplines = unique(projects.flatMap(({ data }) => data.disciplineTags));
 const technologies = unique(projects.flatMap(({ data }) => data.technologyTags));
 const groups = [
-  { id: 'origin', label: 'Origin', values: origins, className: 'filter-chip--origin' },
-  { id: 'period', label: 'Period', values: periods, className: 'filter-chip--period' },
-  { id: 'discipline', label: 'Discipline', values: disciplines, className: 'filter-chip--discipline' },
-  { id: 'technology', label: 'Technology', values: technologies, className: 'filter-chip--technology' },
+  { id: 'origin', label: 'Origin', labelPt: 'Origem', labelEs: 'Origen', values: origins, className: 'filter-chip--origin' },
+  { id: 'period', label: 'Period', labelPt: 'Período', labelEs: 'Período', values: periods, className: 'filter-chip--period' },
+  { id: 'discipline', label: 'Discipline', labelPt: 'Disciplina', labelEs: 'Disciplina', values: disciplines, className: 'filter-chip--discipline' },
+  { id: 'technology', label: 'Technology', labelPt: 'Tecnologia', labelEs: 'Tecnología', values: technologies, className: 'filter-chip--technology' },
 ];
 ---
 
-<section class="project-search" aria-label="Search and filter projects" data-project-search>
+<section class="project-search" aria-label="Search and filter projects" data-i18n-aria-label-en="Search and filter projects" data-i18n-aria-label-pt="Buscar e filtrar projetos" data-i18n-aria-label-es="Buscar y filtrar proyectos" data-project-search>
   <label class="search-field">
-    <span class="sr-only">Search projects</span>
+    <span class="sr-only" data-i18n-en="Search projects" data-i18n-pt="Buscar projetos" data-i18n-es="Buscar proyectos">Search projects</span>
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <circle cx="10.7" cy="10.7" r="6.7" fill="none" stroke="currentColor" stroke-width="1.8" />
       <path d="m16 16 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
     </svg>
-    <input type="search" placeholder="Search by project name or #tag" autocomplete="off" data-project-query />
+    <input type="search" placeholder="Search by project name or #tag" data-i18n-placeholder-en="Search by project name or #tag" data-i18n-placeholder-pt="Busque pelo nome do projeto ou #tag" data-i18n-placeholder-es="Busca por nombre del proyecto o #etiqueta" autocomplete="off" data-project-query />
     <kbd>/</kbd>
   </label>
 
   <details class="filter-panel">
     <summary>
-      Filter by tags
+      <span data-i18n-en="Filter by tags" data-i18n-pt="Filtrar por tags" data-i18n-es="Filtrar por etiquetas">Filter by tags</span>
       <span class="filter-count" data-filter-count hidden>0</span>
       <span class="filter-panel__chevron" aria-hidden="true">⌄</span>
     </summary>
@@ -40,7 +40,7 @@ const groups = [
       {
         groups.map((group) => (
           <fieldset class="filter-group" data-filter-group={group.id}>
-            <legend>{group.label}</legend>
+            <legend data-i18n-en={group.label} data-i18n-pt={group.labelPt} data-i18n-es={group.labelEs}>{group.label}</legend>
             <div class="filter-group__options">
               {group.values.map((value) => (
                 <button
@@ -56,11 +56,11 @@ const groups = [
           </fieldset>
         ))
       }
-      <button class="clear-filters" type="button" data-clear-filters disabled>Clear filters</button>
+      <button class="clear-filters" type="button" data-clear-filters disabled data-i18n-en="Clear filters" data-i18n-pt="Limpar filtros" data-i18n-es="Borrar filtros">Clear filters</button>
     </div>
   </details>
 
-  <p class="search-status" aria-live="polite" data-search-status>
+  <p class="search-status" aria-live="polite" data-search-status data-i18n-en={`Showing all ${projects.length} projects.`} data-i18n-pt={`Exibindo todos os ${projects.length} projetos.`} data-i18n-es={`Mostrando los ${projects.length} proyectos.`}>
     Showing all {projects.length} projects.
   </p>
 </section>

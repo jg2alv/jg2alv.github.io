@@ -14,9 +14,9 @@ const projects = (await getCollection('projects')).sort((a, b) => b.data.order -
 >
   <main id="main-content" class="projects-page page-shell">
     <header class="page-intro">
-      <p class="eyebrow">Project archive</p>
-      <h1>All projects.</h1>
-      <p>Search by name or combine tags to find work by period, discipline, origin, language, or technology.</p>
+      <p class="eyebrow" data-i18n-en="Project archive" data-i18n-pt="Arquivo de projetos" data-i18n-es="Archivo de proyectos">Project archive</p>
+      <h1 data-i18n-en="All projects." data-i18n-pt="Todos os projetos." data-i18n-es="Todos los proyectos.">All projects.</h1>
+      <p data-i18n-en="Search by name or combine tags to find work by period, discipline, origin, language, or technology." data-i18n-pt="Busque por nome ou combine tags para encontrar projetos por período, disciplina, origem, linguagem ou tecnologia." data-i18n-es="Busca por nombre o combina etiquetas para encontrar proyectos por período, disciplina, origen, lenguaje o tecnología.">Search by name or combine tags to find work by period, discipline, origin, language, or technology.</p>
     </header>
 
     <ProjectSearch projects={projects} />
@@ -26,8 +26,8 @@ const projects = (await getCollection('projects')).sort((a, b) => b.data.order -
     </div>
     <div class="no-results" data-no-results hidden>
       <span aria-hidden="true">⌁</span>
-      <h2>No projects found.</h2>
-      <p>Try a different name or remove one of the selected tags.</p>
+      <h2 data-i18n-en="No projects found." data-i18n-pt="Nenhum projeto encontrado." data-i18n-es="No se encontraron proyectos.">No projects found.</h2>
+      <p data-i18n-en="Try a different name or remove one of the selected tags." data-i18n-pt="Tente outro nome ou remova uma das tags selecionadas." data-i18n-es="Prueba otro nombre o elimina alguna de las etiquetas seleccionadas.">Try a different name or remove one of the selected tags.</p>
     </div>
   </main>
 </BaseLayout>

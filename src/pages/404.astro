@@ -5,9 +5,9 @@ import { withBase } from '../utils/paths';
 
 <BaseLayout title="Page not found — Project Portfolio">
   <main id="main-content" class="not-found page-shell">
-    <p class="eyebrow">Error 404</p>
-    <h1>This page wandered off the graph.</h1>
-    <p>The address may have changed, or the project may not exist yet.</p>
-    <a class="primary-button" href={withBase('/')}>Return home <span aria-hidden="true">→</span></a>
+    <p class="eyebrow" data-i18n-en="Error 404" data-i18n-pt="Erro 404" data-i18n-es="Error 404">Error 404</p>
+    <h1 data-i18n-en="This page wandered off the graph." data-i18n-pt="Esta página saiu do grafo." data-i18n-es="Esta página se salió del grafo.">This page wandered off the graph.</h1>
+    <p data-i18n-en="The address may have changed, or the project may not exist yet." data-i18n-pt="O endereço pode ter mudado, ou o projeto ainda não existe." data-i18n-es="La dirección puede haber cambiado, o el proyecto todavía no existe.">The address may have changed, or the project may not exist yet.</p>
+    <a class="primary-button" href={withBase('/')}><span data-i18n-en="Return home" data-i18n-pt="Voltar ao início" data-i18n-es="Volver al inicio">Return home</span> <span aria-hidden="true">→</span></a>
   </main>
 </BaseLayout>

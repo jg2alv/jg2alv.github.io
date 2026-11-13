@@ -33,7 +33,7 @@ const filterValues = [
   data-discipline={data.disciplineTags.join(' ')}
   data-technology={data.technologyTags.join(' ')}
 >
-  <a class="project-card__link" href={withBase(`/projects/${project.id}/`)} aria-label={`Read about ${data.title}`}>
+  <a class="project-card__link" href={withBase(`/projects/${project.id}/`)} aria-label={`Read about ${data.title}`} data-i18n-aria-label-en={`Read about ${data.title}`} data-i18n-aria-label-pt={`Leia sobre ${data.title}`} data-i18n-aria-label-es={`Lee sobre ${data.title}`}>
     <ProjectVisual variant={data.visual} />
     <div class="project-card__content">
       <h2>{data.title}</h2>
@@ -45,7 +45,7 @@ const filterValues = [
         technologyTags={data.technologyTags}
         compact
       />
-      <span class="project-card__action">View project <span aria-hidden="true">↗</span></span>
+      <span class="project-card__action"><span data-i18n-en="View project" data-i18n-pt="Ver projeto" data-i18n-es="Ver proyecto">View project</span> <span aria-hidden="true">↗</span></span>
     </div>
   </a>
 </article>

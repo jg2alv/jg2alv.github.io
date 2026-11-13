@@ -1,10 +1,13 @@
 ---
 import Footer from '../components/layout/Footer.astro';
+import InterferenceField from '../components/common/InterferenceField.astro';
 import Header from '../components/layout/Header.astro';
 import { site } from '../data/site';
 import '../styles/tokens.css';
 import '../styles/global.css';
+import '../styles/identity.css';
 import { withBase } from '../utils/paths';
+import { PREFERENCE_KEYS } from '../utils/preferences';
 
 interface Props {
   title?: string;
@@ -26,7 +29,7 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : unde
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f2f3f1" data-theme-color />
+    <meta name="theme-color" content="#f7f8fa" data-theme-color />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -34,26 +37,44 @@ const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : unde
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <title>{title}</title>
-    <script is:inline>
+    <script is:inline define:vars={{ preferenceKeys: PREFERENCE_KEYS }}>
       (() => {
-        let saved = null;
+        let savedTheme = null;
+        let savedLanguage = null;
         try {
-          saved = localStorage.getItem('portfolio-theme');
+          savedTheme = sessionStorage.getItem(preferenceKeys.theme);
+          savedLanguage = sessionStorage.getItem(preferenceKeys.language);
         } catch {
-          // Storage can be unavailable in privacy-restricted contexts.
+          // Follow the system when session storage is unavailable.
         }
-        const theme = saved === 'light' || saved === 'dark'
-          ? saved
-          : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        let prefersDark = false;
+        try {
+          prefersDark = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        } catch {
+          // Browsers without media-query support use the light theme.
+        }
+        const theme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : prefersDark ? 'dark' : 'light';
+        const supported = ['pt', 'en', 'es'];
+        const languages = navigator.languages?.length ? navigator.languages : [navigator.language ?? 'en'];
+        const detected = Array.from(languages, (locale) => locale.trim().toLowerCase().split(/[-_]/)[0]).find((language) => supported.includes(language));
+        const language = supported.includes(savedLanguage) ? savedLanguage : detected ?? 'en';
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
+        document.documentElement.lang = language === 'pt' ? 'pt-BR' : language;
+        const meta = document.querySelector('[data-theme-color]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#f7f8fa');
       })();
     </script>
   </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+  <body data-active-page={active ?? 'other'}>
+    <InterferenceField />
+    <a class="skip-link" href="#main-content" data-i18n-en="Skip to content" data-i18n-pt="Pular para o conteúdo" data-i18n-es="Saltar al contenido">Skip to content</a>
     <Header active={active} />
-    <slot />
-    <Footer />
+    <div class="site-content">
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>

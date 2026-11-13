@@ -37,4 +37,4 @@ Set `SITE_URL` only when publishing under a custom domain. `PUBLIC_BASE_PATH` ca
 
 ## Design references
 
-The approved interactive mock and color exploration are preserved in `design/mockups/`. The production components reproduce the Aubergine & Sage direction while keeping content, behavior, and presentation separate.
+The approved interactive mock and color exploration are preserved in `design/mockups/`. The current identity uses a compact icon navigation rail, screen-sized sections, persistent English/Portuguese controls, and light/dark themes. The dark palette combines black, white, and terminal green (#00FF85); the light palette uses black text and a Deep Sky Blue (#00BFFF) accent. A native animated interference field from `widgets/campo-de-interferencia.html` runs behind the page, with no widget titles or controls. The homepage résumé is stored at `public/resume-joao-vaz.pdf`.

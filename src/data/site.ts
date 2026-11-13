@@ -10,6 +10,7 @@ export interface SocialLink {
 
 interface SiteData {
   name: string;
+  shortName: string;
   readonly monogram: string;
   role: string;
   institution: string;
@@ -20,14 +21,13 @@ interface SiteData {
 }
 
 export const site: SiteData = {
-  name: 'João Vaz',
-  get monogram() {
-    return this.name.trim().slice(0, 2).toUpperCase();
-  },
-  role: 'Computer scientist and researcher',
+  name: 'João Gabriel Guimarães Alves Vaz',
+  shortName: 'João Vaz',
+  monogram: 'JG',
+  role: 'B.Sc.',
   institution: 'Universidade Federal de Minas Gerais',
   description:
-    'A project-focused portfolio featuring academic and personal work in computer science.',
+    'João Gabriel Guimarães Alves Vaz — Computer Science bachelor student at DCC/UFMG, Belo Horizonte. Academic and personal projects in software, systems, and data.',
   email: 'jgvaz@ufmg.br',
   get copyrightYear() {
     return new Date().getFullYear();

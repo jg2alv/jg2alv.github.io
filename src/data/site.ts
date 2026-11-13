@@ -43,7 +43,7 @@ export const site: SiteData = {
     {
       id: 'linkedin',
       label: 'LinkedIn',
-      href: 'https://www.linkedin.com/',
+      href: 'https://www.linkedin.com/in/jgvaz/',
       icon: 'linkedin',
       external: true,
     },
